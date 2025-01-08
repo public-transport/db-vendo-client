@@ -31,6 +31,7 @@ const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
 	from = profile.formatLocation(profile, from, 'from');
 	to = profile.formatLocation(profile, to, 'to');
 	const filters = profile.formatProductsFilter({profile}, opt.products || {}, 'dbnav');
+	const transfers = profile.formatTransfers(opt.transfers) ?? undefined; // `dbnav` does not allow `undefined` here
 	// TODO opt.accessibility
 	// TODO routingMode
 	let query = formatBaseJourneysReq(ctx);
@@ -46,7 +47,7 @@ const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
 				? [{locationId: profile.formatLocation(profile, opt.via, 'opt.via').lid}]
 				: undefined,
 			zielLocationId: to.lid,
-			maxUmstiege: opt.transfers ?? undefined,
+			maxUmstiege: transfers,
 			minUmstiegsdauer: opt.transferTime || undefined,
 			fahrradmitnahme: opt.bike,
 		},

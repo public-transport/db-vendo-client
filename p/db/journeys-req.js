@@ -4,10 +4,11 @@ const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
 	from = profile.formatLocation(profile, from, 'from');
 	to = profile.formatLocation(profile, to, 'to');
 	const filters = profile.formatProductsFilter({profile}, opt.products || {});
+	const transfers = profile.formatTransfers(opt.transfers);
 	// TODO opt.accessibility
 	// TODO routingMode
 	let query = {
-		maxUmstiege: opt.transfers,
+		maxUmstiege: transfers,
 		minUmstiegszeit: opt.transferTime,
 		deutschlandTicketVorhanden: false,
 		nurDeutschlandTicketVerbindungen: false,
