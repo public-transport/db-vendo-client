@@ -146,6 +146,9 @@ const createClient = (profile, userAgent, opt = {}) => {
 			}
 			journeysRef = opt.laterThan;
 		}
+		if (opt?.transfers === -1) { // having `transfers` set to -1 may not be allowed, see https://github.com/public-transport/db-vendo-client/issues/5
+			opt.transfers = null;
+		}
 
 		opt = Object.assign({
 			results: null, // number of journeys – `null` means "whatever HAFAS returns"

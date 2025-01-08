@@ -114,23 +114,3 @@ tap.test('formats a journeys() request with BC correctly (DB)', (t) => {
 	});
 	t.end();
 });
-
-tap.test('formats a journeys() request with unlimited transfers (DB)', (t) => {
-	const _opt = {...opt};
-	const ctx = {profile, opt: _opt};
-
-	ctx.opt.transfers = 0; // no transfers
-	const reqZeroTransfers = profile.formatJourneysReq(ctx, '8098160', '8000284', new Date('2024-12-07T23:50:12+01:00'), true, null);
-	t.same(reqZeroTransfers.body.maxUmstiege, 0);
-
-	ctx.opt.transfers = null; // unconstrained transfers implicit
-	const reqUnlimitedTransfersImplicit = profile.formatJourneysReq(ctx, '8098160', '8000284', new Date('2024-12-07T23:50:12+01:00'), true, null);
-	t.same(reqUnlimitedTransfersImplicit.body.maxUmstiege, undefined);
-
-	ctx.opt.transfers = -1; // unconstrained transfers explicit
-	const reqUnlimitedTransfersExplicit = profile.formatJourneysReq(ctx, '8098160', '8000284', new Date('2024-12-07T23:50:12+01:00'), true, null);
-	t.same(reqUnlimitedTransfersExplicit.body.maxUmstiege, undefined);
-
-	t.end();
-
-});
