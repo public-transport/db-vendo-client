@@ -7,7 +7,7 @@ const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
 	// TODO opt.accessibility
 	// TODO routingMode
 	let query = {
-		maxUmstiege: opt.transfers,
+		maxUmstiege: opt.transfers === -1 ? undefined : opt.transfers, // setting `maxUmstiege` to -1 is not allowed, see https://github.com/public-transport/db-vendo-client/issues/5
 		minUmstiegszeit: opt.transferTime,
 		deutschlandTicketVorhanden: false,
 		nurDeutschlandTicketVerbindungen: false,

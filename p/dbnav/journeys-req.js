@@ -46,7 +46,7 @@ const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
 				? [{locationId: profile.formatLocation(profile, opt.via, 'opt.via').lid}]
 				: undefined,
 			zielLocationId: to.lid,
-			maxUmstiege: opt.transfers || undefined,
+			maxUmstiege: opt.transfers === -1 ? undefined : opt.transfers, // setting `maxUmstiege` to -1 is not allowed, see https://github.com/public-transport/db-vendo-client/issues/5
 			minUmstiegsdauer: opt.transferTime || undefined,
 			fahrradmitnahme: opt.bike,
 		},
