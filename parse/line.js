@@ -2,7 +2,7 @@ import slugg from 'slugg';
 
 const parseLine = (ctx, p) => {
 	const profile = ctx.profile;
-	const fahrtNr = p.verkehrsmittel?.nummer || p.transport?.number || p.train?.no || p.verkehrsmittelNummer || ((p.mitteltext || '') + ' ').split(' ')[1];
+	const fahrtNr = p.verkehrsmittel?.nummer || p.transport?.number || p.train?.no || ((p.risZuglaufId || '') + '_').split('_')[1] || p.verkehrsmittelNummer || ((p.mitteltext || '') + ' ').split(' ')[1];
 	const res = {
 		type: 'line',
 		id: slugg(p.verkehrsmittel?.langText || p.transport?.journeyDescription || p.train && p.train.category + ' ' + p.train.lineName + ' ' + p.train.no || p.langtext || p.mitteltext), // TODO terrible
