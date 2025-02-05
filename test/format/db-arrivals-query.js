@@ -62,6 +62,11 @@ tap.test('formats an arrivals() request with different vias option', (t) => {
 	t.equal(reqViasNull.query.mitVias, undefined);
 	t.equal(reqViasNull.query.maxVias, 0);
 
+	ctx.opt.vias = -1;
+	const reqViasUnlimited = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
+	t.equal(reqViasUnlimited.query.mitVias, true);
+	t.equal(reqViasUnlimited.query.maxVias, undefined);
+
 	ctx.opt.vias = 42;
 	const reqViasFourtyTwo = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
 	t.equal(reqViasFourtyTwo.query.mitVias, true);

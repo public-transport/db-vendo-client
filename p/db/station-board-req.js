@@ -11,7 +11,7 @@ const formatStationBoardReq = (ctx, station, type) => {
 			zeit: profile.formatTimeOfDay(profile, opt.when),
 			datum: profile.formatDate(profile, opt.when),
 			mitVias: maxVias !== 0 ? true : undefined,
-			maxVias,
+			maxVias: maxVias === -1 ? undefined : maxVias,
 			verkehrsmittel: profile.formatProductsFilter(ctx, opt.products || {}),
 		},
 		method: 'GET',
