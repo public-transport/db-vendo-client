@@ -16,7 +16,7 @@ const parseLine = (ctx, p) => {
 		res.adminCode = adminCode;
 	}
 	res.productName = p.verkehrsmittel?.kurzText || p.verkehrmittel?.kurzText || p.transport?.category || p.train?.category || p.category || p.kurztext;
-	const foundProduct = profile.products.find(pp => pp.vendo == p.verkehrsmittel?.produktGattung || pp.ris == p.transport?.type || pp.ris == p.train?.type || pp.ris == p.type || pp.ris_alt == p.train?.type || pp.ris_alt == p.type || pp.dbnav_short == p.produktGattung);
+	const foundProduct = profile.products.find(pp => pp.vendo == p.verkehrsmittel?.produktGattung || pp.vendo == p.verkehrmittel?.produktGattung || pp.ris == p.transport?.type || pp.ris == p.train?.type || pp.ris == p.type || pp.ris_alt == p.train?.type || pp.ris_alt == p.type || pp.dbnav_short == p.produktGattung);
 	res.mode = foundProduct?.mode;
 	res.product = foundProduct?.id;
 
