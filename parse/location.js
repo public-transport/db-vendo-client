@@ -13,6 +13,10 @@ const parseLocation = (ctx, l) => {
 		return null;
 	}
 
+	if (typeof l === 'string') {
+		return {type: 'station', id: l};
+	}
+
 	const lid = parse(l.id || l.locationId, {delimiter: '@'});
 	const res = {
 		type: 'location',

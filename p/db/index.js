@@ -7,6 +7,7 @@ import {formatJourneysReq, formatRefreshJourneyReq} from './journeys-req.js';
 import {formatTripReq} from './trip-req.js';
 import {formatLocationFilter} from './location-filter.js';
 import {formatLocationsReq} from './locations-req.js';
+import {formatStationBoardReq} from './station-board-req.js';
 
 const profile = {
 	...baseProfile,
@@ -19,6 +20,7 @@ const profile = {
 	formatTripReq,
 	formatLocationsReq,
 	formatLocationFilter,
+	formatStationBoardReq,
 };
 
 export {

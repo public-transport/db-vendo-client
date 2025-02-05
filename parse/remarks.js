@@ -13,6 +13,7 @@ const parseRemarks = (ctx, ref) => {
 		ref.hims || [],
 		ref.serviceNotiz && [ref.serviceNotiz] || [],
 		ref.messages || [],
+		ref.meldungen || [],
 		ref.meldungenAsObject || [],
 		ref.attributNotizen || [],
 		ref.attributes || [],
@@ -202,11 +203,16 @@ const parseRemarks = (ctx, ref) => {
 */
 
 const parseCancelled = (ref) => {
-	return ref.canceled || ref.cancelled || ref.journeyCancelled || (ref.risNotizen || ref.echtzeitNotizen) && Boolean((ref.risNotizen || ref.echtzeitNotizen).find(r => r.key == 'text.realtime.stop.cancelled'
-		|| r.type == 'HALT_AUSFALL'
-		|| r.text == 'Halt entfällt'
-		|| r.text == 'Stop cancelled',
-	));
+	return ref.canceled
+		|| ref.cancelled
+		|| ref.journeyCancelled
+		|| (ref.risNotizen || ref.echtzeitNotizen || ref.meldungen) && Boolean(
+			(ref.risNotizen || ref.echtzeitNotizen || ref.meldungen).find(r => r.key == 'text.realtime.stop.cancelled'
+			|| r.type == 'HALT_AUSFALL'
+			|| r.text == 'Halt entfällt'
+			|| r.text == 'Stop cancelled',
+			),
+		);
 };
 
 export {
