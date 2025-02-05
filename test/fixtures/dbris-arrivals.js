@@ -43,6 +43,7 @@ const dbArrivals = [
 			name: 'Berlin Beusselstraße',
 		},
 		destination: null,
+		vias: undefined,
 	},
 	{
 		tripId: '20241208-89eeca5a-1768-3713-894a-dd088977f42b',
@@ -94,6 +95,7 @@ const dbArrivals = [
 			name: 'Rudow (U), Berlin',
 		},
 		destination: null,
+		vias: undefined,
 	},
 	{
 		tripId: '20241208-2dc4f2d4-a1e1-3bbf-a607-98ff71c927d0',
@@ -145,6 +147,7 @@ const dbArrivals = [
 			name: 'Goerdelersteg, Berlin',
 		},
 		destination: null,
+		vias: undefined,
 	},
 	{
 		tripId: '20241208-6fa6d37c-a1c0-3f84-bdac-0424705bffaf',
@@ -190,6 +193,7 @@ const dbArrivals = [
 			name: 'Berlin Beusselstraße',
 		},
 		destination: null,
+		vias: undefined,
 	},
 	{
 		tripId: '20241208-c4abf007-d667-3bf1-87a8-2d1b153c014d',
@@ -241,6 +245,7 @@ const dbArrivals = [
 			name: 'Rudow (U), Berlin',
 		},
 		destination: null,
+		vias: undefined,
 	},
 	{
 		tripId: '20241208-c8b6e3e4-6acb-3237-b89e-1fca72497555',
@@ -286,6 +291,7 @@ const dbArrivals = [
 			name: 'Berlin Beusselstraße',
 		},
 		destination: null,
+		vias: undefined,
 	},
 	{
 		tripId: '20241208-f9d83ab7-d603-3344-87c0-a65ecf0f8524',
@@ -337,6 +343,7 @@ const dbArrivals = [
 			name: 'Rathaus Spandau (S+U), Berlin',
 		},
 		destination: null,
+		vias: undefined,
 	},
 ];
 
