@@ -1,4 +1,4 @@
-const dbDepartures = [
+const dbwebDepartures = [
 	{
 		tripId: '2|#VN#1#ST#1738610742#PI#0#ZI#1401845#TA#0#DA#50225#1S#801324#1T#1348#LS#801293#LT#1418#PU#80#RT#2#CA#Bus#ZE#-#ZB#Bus    -#PC#5#FR#801324#FT#1348#TO#801293#TT#1418#',
 		stop: {
@@ -4263,5 +4263,5 @@ const dbDepartures = [
 ];
 
 export {
-	dbDepartures,
+	dbwebDepartures,
 };

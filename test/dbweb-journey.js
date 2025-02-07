@@ -6,9 +6,9 @@ const require = createRequire(import.meta.url);
 import tap from 'tap';
 
 import {createClient} from '../index.js';
-import {profile as rawProfile} from '../p/db/index.js';
-const res = require('./fixtures/db-journey.json');
-import {dbJourney as expected} from './fixtures/db-journey.js';
+import {profile as rawProfile} from '../p/dbweb/index.js';
+const res = require('./fixtures/dbweb-journey.json');
+import {dbwebJourney as expected} from './fixtures/dbweb-journey.js';
 
 const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: false});
 const {profile} = client;
@@ -31,7 +31,7 @@ const opt = {
 	products: {},
 };
 
-tap.test('parses a journey correctly (DB)', (t) => { // TODO DEVI leg
+tap.test('parses a dbweb journey correctly', (t) => { // TODO DEVI leg
 	const ctx = {profile, opt, common: null, res};
 	const journey = profile.parseJourney(ctx, res.verbindungen[0]);
 

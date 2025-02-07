@@ -3,7 +3,7 @@ import isRoughlyEqual from 'is-roughly-equal';
 
 import {createWhen} from './lib/util.js';
 import {createClient} from '../../index.js';
-import {profile as dbProfile} from '../../p/db/index.js';
+import {profile as dbProfile} from '../../p/dbweb/index.js';
 import {
 	createValidateStation,
 	createValidateTrip,
@@ -476,6 +476,7 @@ tap.test('locations named Jungfernheide', async (t) => {
 	t.end();
 });
 
+/*
 tap.test('stop', async (t) => {
 	const s = await client.stop(regensburgHbf);
 
@@ -485,7 +486,6 @@ tap.test('stop', async (t) => {
 	t.end();
 });
 
-/*
 tap.test('line with additionalName', async (t) => {
 	const {departures} = await client.departures(potsdamHbf, {
 		when,

@@ -1,7 +1,7 @@
 import tap from 'tap';
 
 import {createClient} from '../../index.js';
-import {profile as rawProfile} from '../../p/db/index.js';
+import {profile as rawProfile} from '../../p/dbweb/index.js';
 import {data as loyaltyCards} from '../../format/loyalty-cards.js';
 
 const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: false});
@@ -91,7 +91,7 @@ tap.test('formats a journeys() request correctly (DB)', (t) => {
 });
 
 
-tap.test('formats a journeys() request with BC correctly (DB)', (t) => {
+tap.test('formats a journeys() request with BC correctly (dbweb)', (t) => {
 	const ctx = {profile, opt};
 
 	const req = profile.formatJourneysReq(ctx, '8098160', '8000284', new Date('2024-12-07T23:50:12+01:00'), true, null);
@@ -115,7 +115,7 @@ tap.test('formats a journeys() request with BC correctly (DB)', (t) => {
 	t.end();
 });
 
-tap.test('formats a journeys() request with unlimited transfers (DB)', (t) => {
+tap.test('formats a journeys() request with unlimited transfers (dbweb)', (t) => {
 	const _opt = {...opt};
 	const ctx = {profile, opt: _opt};
 

@@ -1,0 +1,5 @@
+{
+	"tripEndpoint": "https://regio-guide.de/@prd/zupo-travel-information/api/public/ri/journey/",
+	"boardEndpoint": "https://regio-guide.de/@prd/zupo-travel-information/api/public/ri/board/",
+	"defaultLanguage": "en"
+}

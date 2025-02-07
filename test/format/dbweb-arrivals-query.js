@@ -1,7 +1,7 @@
 import tap from 'tap';
 
 import {createClient} from '../../index.js';
-import {profile as rawProfile} from '../../p/db/index.js';
+import {profile as rawProfile} from '../../p/dbweb/index.js';
 
 const client = createClient(rawProfile, 'public-transport/hafas-client:test');
 const {profile} = client;

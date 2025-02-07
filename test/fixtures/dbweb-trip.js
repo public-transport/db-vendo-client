@@ -1,4 +1,4 @@
-const dbTrip = {
+const dbwebTrip = {
 	trip: {
 		id: 'foo',
 		origin: {
@@ -470,5 +470,5 @@ const dbTrip = {
 };
 
 export {
-	dbTrip,
+	dbwebTrip,
 };

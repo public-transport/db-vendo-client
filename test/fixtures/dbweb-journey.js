@@ -1,4 +1,4 @@
-const dbJourney = {
+const dbwebJourney = {
 	type: 'journey',
 	legs: [
 		{
@@ -304,5 +304,5 @@ const dbJourney = {
 };
 
 export {
-	dbJourney,
+	dbwebJourney,
 };

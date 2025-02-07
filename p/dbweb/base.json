@@ -5,7 +5,6 @@
 	"locationsEndpoint": "https://int.bahn.de/web/api/reiseloesung/orte",
 	"nearbyEndpoint": "https://int.bahn.de/web/api/reiseloesung/orte/nearby",
 	"tripEndpoint": "https://int.bahn.de/web/api/reiseloesung/fahrt",
-	"regioGuideTripEndpoint": "https://regio-guide.de/@prd/zupo-travel-information/api/public/ri/journey/",
 	"boardEndpoint": "https://int.bahn.de/web/api/reiseloesung/",
 	"defaultLanguage": "en"
 }

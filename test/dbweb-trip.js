@@ -6,9 +6,9 @@ const require = createRequire(import.meta.url);
 import tap from 'tap';
 
 import {createClient} from '../index.js';
-import {profile as rawProfile} from '../p/db/index.js';
-const res = require('./fixtures/db-trip.json');
-import {dbTrip as expected} from './fixtures/db-trip.js';
+import {profile as rawProfile} from '../p/dbweb/index.js';
+const res = require('./fixtures/dbweb-trip.json');
+import {dbwebTrip as expected} from './fixtures/dbweb-trip.js';
 
 const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: false});
 const {profile} = client;

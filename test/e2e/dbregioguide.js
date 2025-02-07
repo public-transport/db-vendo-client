@@ -3,7 +3,7 @@ import isRoughlyEqual from 'is-roughly-equal';
 
 import {createWhen} from './lib/util.js';
 import {createClient} from '../../index.js';
-import {profile as dbProfile} from '../../p/db/index.js';
+import {profile as dbProfile} from '../../p/dbregioguide/index.js';
 import {
 	createValidateStation,
 	createValidateTrip,
@@ -99,7 +99,8 @@ const potsdamHbf = '8012666';
 const berlinSüdkreuz = '8011113';
 const kölnHbf = '8000207';
 
-tap.test('journeys – Berlin Schwedter Str. to München Hbf', async (t) => {
+/*
+tap.test('journeys – Berlin Schwedter Str. to München Hbf', async (t) => {
 	const res = await client.journeys(blnSchwedterStr, münchenHbf, {
 		results: 4,
 		departure: when,
@@ -276,7 +277,6 @@ tap.test('refreshJourney', async (t) => {
 	t.end();
 });
 
-/*
 tap.skip('journeysFromTrip – U Mehringdamm to U Naturkundemuseum, reroute to Spittelmarkt.', async (t) => {
 	const blnMehringdamm = '730939';
 	const blnStadtmitte = '732541';
@@ -364,7 +364,7 @@ tap.skip('journeysFromTrip – U Mehringdamm to U Naturkundemuseum, reroute to S
 		t.ok(legOnTrip, n + ': leg with trip ID not found');
 		t.equal(last(legOnTrip.stopovers).stop.id, blnStadtmitte);
 	}
-});*/
+});
 
 tap.test('trip details', async (t) => {
 	const res = await client.journeys(berlinHbf, münchenHbf, {
@@ -393,6 +393,7 @@ tap.test('trip details', async (t) => {
 
 	t.end();
 });
+*/
 
 tap.test('departures at Berlin Schwedter Str.', async (t) => {
 	const res = await client.departures(blnSchwedterStr, {
@@ -438,6 +439,7 @@ tap.test('arrivals at Berlin Schwedter Str.', async (t) => {
 	t.end();
 });
 
+/*
 tap.test('nearby Berlin Jungfernheide', async (t) => {
 	const nearby = await client.nearby({
 		type: 'location',
@@ -485,7 +487,6 @@ tap.test('stop', async (t) => {
 	t.end();
 });
 
-/*
 tap.test('line with additionalName', async (t) => {
 	const {departures} = await client.departures(potsdamHbf, {
 		when,
