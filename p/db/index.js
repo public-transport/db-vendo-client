@@ -1,50 +1,66 @@
 import {createRequire} from 'module';
 const require = createRequire(import.meta.url);
-const dynamicProfileData = require('./dynamicProfileData.json');
 const dbnavBase = require('../dbnav/base.json');
 const dbregioguideBase = require('../dbregioguide/base.json');
-const dbwebBase = require('../dbweb/base.json');
 import {products} from '../../lib/products.js';
+
+// journeys()
+import {formatJourneysReq} from '../dbnav/journeys-req.js';
+const {journeysEndpoint} = dbnavBase;
+
+// refreshJourneys()
+import {formatRefreshJourneyReq} from '../dbnav/journeys-req.js';
+const {refreshJourneysEndpointTickets, refreshJourneysEndpointPolyline} = dbnavBase;
+
+// locations()
+import {formatLocationsReq} from '../dbnav/locations-req.js';
+import {formatLocationFilter} from '../dbnav/location-filter.js';
+const {locationsEndpoint} = dbnavBase;
+
+// stop()
+import {formatStopReq} from '../dbnav/stop-req.js';
+import {parseStop} from '../dbnav/parse-stop.js';
+const {stopEndpoint} = dbnavBase;
+
+// nearby()
+import {formatNearbyReq} from '../dbnav/nearby-req.js';
+const {nearbyEndpoint} = dbnavBase;
+
+// trip()
+import {formatTripReq} from './trip-req.js';
+const tripEndpoint_dbnav = dbnavBase.tripEndpoint;
+const tripEndpoint_dbregioguide = dbregioguideBase.tripEndpoint;
+
+// arrivals(), departures()
+const {boardEndpoint} = dbregioguideBase;
 
 const profile = {
 	locale: 'de-DE',
 	timezone: 'Europe/Berlin',
 
 	products,
+
+	formatJourneysReq,
+	journeysEndpoint,
+
+	formatRefreshJourneyReq,
+	refreshJourneysEndpointTickets, refreshJourneysEndpointPolyline,
+
+	formatLocationsReq, formatLocationFilter,
+	locationsEndpoint,
+
+	formatStopReq, parseStop,
+	stopEndpoint,
+
+	formatNearbyReq,
+	nearbyEndpoint,
+
+	formatTripReq,
+	tripEndpoint_dbnav, tripEndpoint_dbregioguide,
+
+	boardEndpoint,
 };
 
-// add profile methods
-for (const {profileName, profileMethods} of Object.values(dynamicProfileData)) {
-	for (const {methodName, moduleName} of profileMethods) {
-		try {
-			// TODO use `import()` with top-level await once updated to es2022
-			profile[methodName] = require(`../${profileName}/${moduleName}`)[methodName];
-		} catch { /* use implementation from default profile if module doesn't exist */ }
-	}
-}
-
-const bases = {
-	dbnav: dbnavBase,
-	dbregioguide: dbregioguideBase,
-	dbweb: dbwebBase,
-};
-
-// add endpoint bases
-for (const {profileName, baseKeys} of Object.values(dynamicProfileData)) {
-	if (profileName !== 'db') { // only add endpoint(s) from specified profile
-		for (const baseKey of baseKeys) {
-			profile[baseKey] = bases[profileName][baseKey];
-		}
-		continue;
-	}
-
-	// add endpoints from all profiles with the profile names as key suffixes and dynamically decide which to use later
-	for (const [profileName, profileBases] of Object.entries(bases)) {
-		for (const baseKey of baseKeys) {
-			profile[`${baseKey}_${profileName}`] = profileBases[baseKey];
-		}
-	}
-}
 
 export {
 	profile,
