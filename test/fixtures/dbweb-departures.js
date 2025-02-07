@@ -15,7 +15,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus',
-			fahrtNr: '-',
+			fahrtNr: '',
 			name: 'Bus -',
 			public: true,
 			productName: 'Bus',
@@ -140,7 +140,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus-88x',
-			fahrtNr: '88X',
+			fahrtNr: '88',
 			name: 'Bus 88X',
 			public: true,
 			productName: 'Bus',
@@ -385,7 +385,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'swe26618',
-			fahrtNr: '',
+			fahrtNr: '26618',
 			name: 'SWE26618',
 			public: true,
 			productName: 'SWE',
@@ -454,7 +454,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: '32673',
-			fahrtNr: '',
+			fahrtNr: '32673',
 			name: '32673',
 			public: true,
 			productName: 'N',
@@ -664,7 +664,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus',
-			fahrtNr: '-',
+			fahrtNr: '',
 			name: 'Bus -',
 			public: true,
 			productName: 'Bus',
@@ -881,7 +881,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'swe26552',
-			fahrtNr: '',
+			fahrtNr: '26552',
 			name: 'SWE26552',
 			public: true,
 			productName: 'SWE',
@@ -1205,7 +1205,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus-84x',
-			fahrtNr: '84X',
+			fahrtNr: '84',
 			name: 'Bus 84X',
 			public: true,
 			productName: 'Bus',
@@ -1457,7 +1457,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus',
-			fahrtNr: '-',
+			fahrtNr: '',
 			name: 'Bus -',
 			public: true,
 			productName: 'Bus',
@@ -2232,7 +2232,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: '57775',
-			fahrtNr: '',
+			fahrtNr: '57775',
 			name: '57775',
 			public: true,
 			productName: 'N',
@@ -2267,7 +2267,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'swe26554',
-			fahrtNr: '',
+			fahrtNr: '26554',
 			name: 'SWE26554',
 			public: true,
 			productName: 'SWE',
@@ -2442,7 +2442,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'swe26372',
-			fahrtNr: '',
+			fahrtNr: '26372',
 			name: 'SWE26372',
 			public: true,
 			productName: 'SWE',
@@ -2512,7 +2512,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: '32631',
-			fahrtNr: '',
+			fahrtNr: '32631',
 			name: '32631',
 			public: true,
 			productName: 'N',
@@ -3071,7 +3071,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus-84x',
-			fahrtNr: '84X',
+			fahrtNr: '84',
 			name: 'Bus 84X',
 			public: true,
 			productName: 'Bus',
@@ -3176,7 +3176,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'mex19156',
-			fahrtNr: '',
+			fahrtNr: '19156',
 			name: 'MEX19156',
 			public: true,
 			productName: 'MEX',
@@ -3633,7 +3633,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus',
-			fahrtNr: '-',
+			fahrtNr: '',
 			name: 'Bus -',
 			public: true,
 			productName: 'Bus',
@@ -3962,7 +3962,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: '57469',
-			fahrtNr: '',
+			fahrtNr: '57469',
 			name: '57469',
 			public: true,
 			productName: 'N',
@@ -4207,7 +4207,7 @@ const dbwebDepartures = [
 		line: {
 			type: 'line',
 			id: 'bus-88x',
-			fahrtNr: '88X',
+			fahrtNr: '88',
 			name: 'Bus 88X',
 			public: true,
 			productName: 'Bus',
