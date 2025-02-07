@@ -13,14 +13,10 @@ const parseLocation = (ctx, l) => {
 		return null;
 	}
 
-	if (typeof l === 'string') {
-		return {type: 'station', id: l};
-	}
-
 	const lid = parse(l.id || l.locationId, {delimiter: '@'});
 	const res = {
 		type: 'location',
-		id: (l.extId || l.evaNr || lid.L || l.evaNumber || l.evaNo || '').replace(leadingZeros, '') || null,
+		id: (l.extId || l.evaNr || lid.L || l.evaNumber || l.evaNo || l.bahnhofsId || '').replace(leadingZeros, '') || null,
 	};
 	const name = l.name || lid.O;
 
@@ -33,12 +29,14 @@ const parseLocation = (ctx, l) => {
 	}
 
 	// addresses and pois might also have fake evaNr sometimes!
-	if (l.type === STATION || l.extId || l.evaNumber || l.evaNo || lid.A == '1') {
+	if (l.type === STATION || l.extId || l.evaNumber || l.evaNo || lid.A == '1' || l.bahnhofsId) {
 		let stop = {
 			type: 'station',
 			id: res.id,
-			name: name,
 		};
+		if (name) {
+			stop.name = name;
+		}
 		if ('number' === typeof res.latitude) {
 			stop.location = res; // todo: remove `.id`
 		}

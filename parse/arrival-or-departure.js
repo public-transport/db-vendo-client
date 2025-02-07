@@ -11,7 +11,7 @@ const createParseArrOrDep = (prefix) => {
 		const cancelled = profile.parseCancelled(d);
 		const res = {
 			tripId: d.journeyID || d.journeyId || d.train?.journeyId || d.zuglaufId,
-			stop: profile.parseLocation(ctx, d.station || d.abfrageOrt || d.bahnhofsId),
+			stop: profile.parseLocation(ctx, d.station || d.abfrageOrt || {bahnhofsId: d.bahnhofsId}),
 			...profile.parseWhen(
 				ctx,
 				null,

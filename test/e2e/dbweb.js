@@ -82,7 +82,7 @@ const assertValidTickets = (test, tickets) => {
 	}
 };
 
-const client = createClient(dbProfile, 'public-transport/hafas-client:test', {enrichStations: false});
+const client = createClient(dbProfile, 'public-transport/hafas-client:test', {enrichStations: true});
 
 const berlinHbf = '8011160';
 const münchenHbf = '8000261';
@@ -395,47 +395,69 @@ tap.test('trip details', async (t) => {
 });
 
 tap.test('departures at Berlin Schwedter Str.', async (t) => {
-	const res = await client.departures(blnSchwedterStr, {
-		duration: 5, when,
-	});
+	const interval = setInterval(async () => {
+		const res = await client.departures(blnSchwedterStr, {
+			duration: 5, when,
+		});
 
-	await testDepartures({
-		test: t,
-		res,
-		validate,
-		id: blnSchwedterStr,
-	});
-	t.end();
+		if (res.departures[0].stop.name === undefined) { // ctx.common.locations have not loaded yet
+			return;
+		}
+
+		clearInterval(interval);
+		await testDepartures({
+			test: t,
+			res,
+			validate,
+			id: blnSchwedterStr,
+		});
+		t.end();
+	}, 4000);
 });
 
 tap.test('departures with station object', async (t) => {
-	const res = await client.departures({
-		type: 'station',
-		id: jungfernheide,
-		name: 'Berlin Jungfernheide',
-		location: {
-			type: 'location',
-			latitude: 1.23,
-			longitude: 2.34,
-		},
-	}, {when});
+	const interval = setInterval(async () => {
+		const res = await client.departures({
+			type: 'station',
+			id: jungfernheide,
+			name: 'Berlin Jungfernheide',
+			location: {
+				type: 'location',
+				latitude: 1.23,
+				longitude: 2.34,
+			},
+		}, {when});
 
-	validate(t, res, 'departuresResponse', 'res');
-	t.end();
+		if (res.departures[0].stop.name === undefined) { // ctx.common.locations have not loaded yet
+			return;
+		}
+
+		clearInterval(interval);
+		validate(t, res, 'departuresResponse', 'res');
+		t.end();
+
+	}, 4000);
 });
 
 tap.test('arrivals at Berlin Schwedter Str.', async (t) => {
-	const res = await client.arrivals(blnSchwedterStr, {
-		duration: 5, when,
-	});
+	const interval = setInterval(async () => {
+		const res = await client.arrivals(blnSchwedterStr, {
+			duration: 5, when,
+		});
 
-	await testArrivals({
-		test: t,
-		res,
-		validate,
-		id: blnSchwedterStr,
-	});
-	t.end();
+		if (res.arrivals[0].stop.name === undefined) { // ctx.common.locations have not loaded yet
+			return;
+		}
+
+		clearInterval(interval);
+		await testArrivals({
+			test: t,
+			res,
+			validate,
+			id: blnSchwedterStr,
+		});
+		t.end();
+	}, 4000);
 });
 
 tap.test('nearby Berlin Jungfernheide', async (t) => {
