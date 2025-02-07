@@ -395,16 +395,17 @@ tap.test('trip details', async (t) => {
 });
 
 tap.test('departures at Berlin Schwedter Str.', async (t) => {
-	const interval = setInterval(async () => {
+	let interval = setInterval(async () => {
 		const res = await client.departures(blnSchwedterStr, {
 			duration: 5, when,
 		});
 
-		if (res.departures[0].stop.name === undefined) { // ctx.common.locations have not loaded yet
+		if (res.departures[0].stop.name === undefined || interval === undefined) { // ctx.common.locations have not loaded yet
 			return;
 		}
 
 		clearInterval(interval);
+		interval = undefined;
 		await testDepartures({
 			test: t,
 			res,
@@ -416,7 +417,7 @@ tap.test('departures at Berlin Schwedter Str.', async (t) => {
 });
 
 tap.test('departures with station object', async (t) => {
-	const interval = setInterval(async () => {
+	let interval = setInterval(async () => {
 		const res = await client.departures({
 			type: 'station',
 			id: jungfernheide,
@@ -428,11 +429,12 @@ tap.test('departures with station object', async (t) => {
 			},
 		}, {when});
 
-		if (res.departures[0].stop.name === undefined) { // ctx.common.locations have not loaded yet
+		if (res.departures[0].stop.name === undefined || interval === undefined) { // ctx.common.locations have not loaded yet
 			return;
 		}
 
 		clearInterval(interval);
+		interval = undefined;
 		validate(t, res, 'departuresResponse', 'res');
 		t.end();
 
@@ -440,16 +442,17 @@ tap.test('departures with station object', async (t) => {
 });
 
 tap.test('arrivals at Berlin Schwedter Str.', async (t) => {
-	const interval = setInterval(async () => {
+	let interval = setInterval(async () => {
 		const res = await client.arrivals(blnSchwedterStr, {
 			duration: 5, when,
 		});
 
-		if (res.arrivals[0].stop.name === undefined) { // ctx.common.locations have not loaded yet
+		if (res.arrivals[0].stop.name === undefined || interval === undefined) { // ctx.common.locations have not loaded yet
 			return;
 		}
 
 		clearInterval(interval);
+		interval = undefined;
 		await testArrivals({
 			test: t,
 			res,
