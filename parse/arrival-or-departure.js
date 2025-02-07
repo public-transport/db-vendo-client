@@ -18,7 +18,7 @@ const createParseArrOrDep = (prefix) => {
 				d.timeSchedule || d.time || d.zeit || d.abgangsDatum || d.ankunftsDatum,
 				d.timeType != 'SCHEDULE' ? d.timePredicted || d.time || d.ezZeit || d.ezAbgangsDatum || d.ezAnkunftsDatum : null,
 				cancelled),
-			...profile.parsePlatform(ctx, d.platformSchedule || d.gleis || d.platform || d.ezGleis, d.platformPredicted || d.platform || d.ezGleis, cancelled),
+			...profile.parsePlatform(ctx, d.platformSchedule || d.platform || d.gleis, d.platformPredicted || d.platform || d.ezGleis, cancelled),
 			// prognosisType: TODO
 			direction: d.transport?.direction?.stopPlaces?.length > 0 && profile.parseStationName(ctx, d.transport?.direction?.stopPlaces[0].name) || profile.parseStationName(ctx, d.destination?.name || d.richtung || d.terminus) || null,
 			provenance: profile.parseStationName(ctx, d.transport?.origin?.name || d.origin?.name || d.abgangsOrt?.name) || null,
