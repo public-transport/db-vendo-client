@@ -395,72 +395,74 @@ tap.test('trip details', async (t) => {
 });
 
 tap.test('departures at Berlin Schwedter Str.', async (t) => {
-	let interval = setInterval(async () => {
-		const res = await client.departures(blnSchwedterStr, {
-			duration: 5, when,
-		});
+	const res = await new Promise((resolve) => {
+		let interval = setInterval(async () => { // repeat evaluating `departures()` until stations are enriched
+			const res = await client.departures(blnSchwedterStr, {
+				duration: 5, when,
+			});
 
-		if (res.departures[0].stop.name === undefined || interval === undefined) { // ctx.common.locations have not loaded yet
-			return;
-		}
+			if (res.departures[0].stop.name !== undefined) { // ctx.common.locations have loaded
+				clearInterval(interval);
+				return resolve(res);
+			}
+		}, 4000);
+	});
 
-		clearInterval(interval);
-		interval = undefined;
-		await testDepartures({
-			test: t,
-			res,
-			validate,
-			id: blnSchwedterStr,
-		});
-		t.end();
-	}, 4000);
+	await testDepartures({
+		test: t,
+		res,
+		validate,
+		id: blnSchwedterStr,
+	});
+	t.end();
 });
 
 tap.test('departures with station object', async (t) => {
-	let interval = setInterval(async () => {
-		const res = await client.departures({
-			type: 'station',
-			id: jungfernheide,
-			name: 'Berlin Jungfernheide',
-			location: {
-				type: 'location',
-				latitude: 1.23,
-				longitude: 2.34,
-			},
-		}, {when});
+	const res = await new Promise((resolve) => {
+		let interval = setInterval(async () => { // repeat evaluating `departures()` until stations are enriched
+			const res = await client.departures({
+				type: 'station',
+				id: jungfernheide,
+				name: 'Berlin Jungfernheide',
+				location: {
+					type: 'location',
+					latitude: 1.23,
+					longitude: 2.34,
+				},
+			}, {when});
 
-		if (res.departures[0].stop.name === undefined || interval === undefined) { // ctx.common.locations have not loaded yet
-			return;
-		}
+			if (res.departures[0].stop.name !== undefined) { // ctx.common.locations have loaded
+				clearInterval(interval);
+				return resolve(res);
+			}
+		}, 4000);
+	});
 
-		clearInterval(interval);
-		interval = undefined;
-		validate(t, res, 'departuresResponse', 'res');
-		t.end();
-
-	}, 4000);
+	validate(t, res, 'departuresResponse', 'res');
+	t.end();
 });
 
 tap.test('arrivals at Berlin Schwedter Str.', async (t) => {
-	let interval = setInterval(async () => {
-		const res = await client.arrivals(blnSchwedterStr, {
-			duration: 5, when,
-		});
+	const res = await new Promise((resolve) => {
+		let interval = setInterval(async () => { // repeat evaluating `arrivals()` until stations are enriched
+			const res = await client.arrivals(blnSchwedterStr, {
+				duration: 5, when,
+			});
 
-		if (res.arrivals[0].stop.name === undefined || interval === undefined) { // ctx.common.locations have not loaded yet
-			return;
-		}
+			if (res.arrivals[0].stop.name !== undefined) { // ctx.common.locations have loaded
+				clearInterval(interval);
+				return resolve(res);
+			}
+		}, 4000);
+	});
 
-		clearInterval(interval);
-		interval = undefined;
-		await testArrivals({
-			test: t,
-			res,
-			validate,
-			id: blnSchwedterStr,
-		});
-		t.end();
-	}, 4000);
+	await testArrivals({
+		test: t,
+		res,
+		validate,
+		id: blnSchwedterStr,
+	});
+	t.end();
 });
 
 tap.test('nearby Berlin Jungfernheide', async (t) => {
