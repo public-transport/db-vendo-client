@@ -26,7 +26,6 @@ const createParseArrOrDep = (prefix) => {
 			remarks: [],
 			origin: profile.parseLocation(ctx, d.transport?.origin || d.origin) || null,
 			destination: profile.parseLocation(ctx, d.transport?.destination || d.destination) || null,
-			vias: d.ueber,
 			// loadFactor: profile.parseArrOrDepWithLoadFactor(ctx, d)
 		};
 
@@ -40,7 +39,18 @@ const createParseArrOrDep = (prefix) => {
 		if (opt.remarks || opt.meldungen) {
 			res.remarks = profile.parseRemarks(ctx, d);
 		}
-		// TODO opt.stopovers
+
+		if (opt.stopovers && Array.isArray(d.ueber)) {
+			const stopovers = d.ueber
+				.map(viaName => profile.parseStopover(ctx, {name: viaName}, null));
+
+			if (prefix === ARRIVAL) {
+				res.previousStopovers = stopovers;
+			} else if (prefix === DEPARTURE) {
+				res.nextStopovers = stopovers;
+			}
+		}
+
 		return res;
 	};
 

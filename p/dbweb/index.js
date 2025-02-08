@@ -14,11 +14,14 @@ const profile = {
 	timezone: 'Europe/Berlin',
 
 	products,
+
 	formatJourneysReq,
 	formatRefreshJourneyReq,
 	formatLocationsReq,
 	formatLocationFilter,
 	formatStationBoardReq,
+
+	departuresGetPasslist: true,
 };
 
 export {

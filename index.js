@@ -32,6 +32,7 @@ const loadEnrichedStationData = (profile) => new Promise((resolve, reject) => {
 	readStations.full()
 		.on('data', (station) => {
 			items[station.id] = station;
+			items[station.name] = station;
 		})
 		.once('end', () => {
 			if (profile.DEBUG) {

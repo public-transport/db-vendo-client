@@ -33,7 +33,6 @@ const dbnavDepartures = [
 		remarks: [],
 		origin: null,
 		destination: null,
-		vias: undefined,
 	},
 	{
 		tripId: '2|#VN#1#ST#1734722398#PI#1#ZI#214076#TA#1#DA#291224#1S#8005190#1T#1505#LS#8000091#LT#1520#PU#81#RT#1#CA#RB#ZE#58904#ZB#RB 58904#PC#3#FR#8005190#FT#1505#TO#8000091#TT#1520#',
@@ -69,7 +68,6 @@ const dbnavDepartures = [
 		remarks: [],
 		origin: null,
 		destination: null,
-		vias: undefined,
 	},
 	{
 		tripId: '2|#VN#1#ST#1734722398#PI#1#ZI#863886#TA#3#DA#291224#1S#682943#1T#1450#LS#683407#LT#1531#PU#81#RT#1#CA#Bus#ZE#807#ZB#Bus  807#PC#5#FR#682943#FT#1450#TO#683407#TT#1531#',
@@ -105,7 +103,6 @@ const dbnavDepartures = [
 		remarks: [],
 		origin: null,
 		destination: null,
-		vias: undefined,
 	},
 	{
 		tripId: '2|#VN#1#ST#1734722398#PI#1#ZI#863865#TA#0#DA#291224#1S#683407#1T#1532#LS#682943#LT#1624#PU#81#RT#1#CA#Bus#ZE#807#ZB#Bus  807#PC#5#FR#683407#FT#1532#TO#682943#TT#1624#',
@@ -141,7 +138,6 @@ const dbnavDepartures = [
 		remarks: [],
 		origin: null,
 		destination: null,
-		vias: undefined,
 	},
 	{
 		tripId: '2|#VN#1#ST#1734722398#PI#1#ZI#863865#TA#0#DA#291224#1S#683407#1T#1532#LS#682943#LT#1624#PU#81#RT#1#CA#Bus#ZE#807#ZB#Bus  807#PC#5#FR#683407#FT#1532#TO#682943#TT#1624#',
@@ -177,7 +173,6 @@ const dbnavDepartures = [
 		remarks: [],
 		origin: null,
 		destination: null,
-		vias: undefined,
 	},
 	{
 		tripId: '2|#VN#1#ST#1734722398#PI#1#ZI#864022#TA#1#DA#291224#1S#677019#1T#1458#LS#683407#LT#1548#PU#81#RT#1#CA#Bus#ZE#817#ZB#Bus  817#PC#5#FR#677019#FT#1458#TO#683407#TT#1548#',
@@ -220,7 +215,6 @@ const dbnavDepartures = [
 		}],
 		origin: null,
 		destination: null,
-		vias: undefined,
 		cancelled: true,
 	},
 ];

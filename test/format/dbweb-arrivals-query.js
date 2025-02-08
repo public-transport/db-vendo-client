@@ -9,8 +9,7 @@ const {profile} = client;
 const opt = {
 	when: new Date('2025-02-09T23:55:00+01:00'),
 	remarks: true,
-	stopovers: false,
-	vias: 0,
+	stopovers: true,
 	language: 'en',
 };
 
@@ -21,8 +20,7 @@ const berlinArrivalsQuery = {
 		ortExtId: '8011160',
 		zeit: '23:55',
 		datum: '2025-02-09',
-		mitVias: undefined,
-		maxVias: 0,
+		mitVias: true,
 		verkehrsmittel: [
 			'ICE',
 			'EC_IC',
@@ -45,32 +43,5 @@ tap.test('formats an arrivals() request correctly', (t) => {
 	const req = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
 
 	t.same(req, berlinArrivalsQuery);
-	t.end();
-});
-
-tap.test('formats an arrivals() request with different vias option', (t) => {
-	const _opt = {...opt};
-	const ctx = {profile, opt: _opt};
-
-	ctx.opt.vias = undefined;
-	const reqViasUndefined = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
-	t.equal(reqViasUndefined.query.mitVias, undefined);
-	t.equal(reqViasUndefined.query.maxVias, 0);
-
-	ctx.opt.vias = null;
-	const reqViasNull = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
-	t.equal(reqViasNull.query.mitVias, undefined);
-	t.equal(reqViasNull.query.maxVias, 0);
-
-	ctx.opt.vias = -1;
-	const reqViasUnlimited = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
-	t.equal(reqViasUnlimited.query.mitVias, true);
-	t.equal(reqViasUnlimited.query.maxVias, undefined);
-
-	ctx.opt.vias = 42;
-	const reqViasFourtyTwo = profile.formatStationBoardReq(ctx, '8011160', 'arrivals');
-	t.equal(reqViasFourtyTwo.query.mitVias, true);
-	t.equal(reqViasFourtyTwo.query.maxVias, 42);
-
 	t.end();
 });

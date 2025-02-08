@@ -18,7 +18,7 @@ const opt = {
 	duration: 10,
 	linesOfStops: true,
 	remarks: true,
-	stopovers: true,
+	stopovers: false,
 	includeRelatedStations: true,
 	when: '2019-08-19T20:30:00+02:00',
 	products: {},

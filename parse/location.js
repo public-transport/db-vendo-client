@@ -59,6 +59,16 @@ const parseLocation = (ctx, l) => {
 		return stop;
 	}
 
+	if (name && common?.locations?.[name] && res.id === null) {
+		delete res.type;
+		delete res.id;
+
+		return {
+			...common.locations[name],
+			...res,
+		};
+	}
+
 	res.name = name;
 	if (l.type === ADDRESS || lid.A == '2') {
 		res.address = name;
