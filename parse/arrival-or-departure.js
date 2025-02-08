@@ -36,7 +36,7 @@ const createParseArrOrDep = (prefix) => {
 			Object.defineProperty(res, 'canceled', {value: true});
 		}
 
-		if (opt.remarks || opt.meldungen) {
+		if (opt.remarks) {
 			res.remarks = profile.parseRemarks(ctx, d);
 		}
 
