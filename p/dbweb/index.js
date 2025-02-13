@@ -1,7 +1,4 @@
-import {createRequire} from 'module';
-const require = createRequire(import.meta.url);
-
-const baseProfile = require('./base.json');
+import baseProfile from './base.json' with { type: "json" };
 import {products} from '../../lib/products.js';
 import {formatJourneysReq, formatRefreshJourneyReq} from './journeys-req.js';
 import {formatLocationFilter} from './location-filter.js';

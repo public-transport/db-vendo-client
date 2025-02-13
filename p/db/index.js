@@ -1,7 +1,5 @@
-import {createRequire} from 'module';
-const require = createRequire(import.meta.url);
-const dbnavBase = require('../dbnav/base.json');
-const dbregioguideBase = require('../dbregioguide/base.json');
+import dbnavBase from '../dbnav/base.json' with { type: "json" };
+import dbregioguideBase from '../dbregioguide/base.json' with { type: "json" };
 import {products} from '../../lib/products.js';
 
 // journeys()
