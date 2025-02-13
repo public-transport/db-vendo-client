@@ -56,7 +56,6 @@
 		"node": ">=16"
 	},
 	"dependencies": {
-		"@derhuerst/round-robin-scheduler": "^1.0.4",
 		"content-type": "^1.0.4",
 		"cross-fetch": "^4.0.0",
 		"db-hafas-stations": "^1.0.0",
