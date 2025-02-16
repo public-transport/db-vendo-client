@@ -37,11 +37,11 @@ const parseRemarks = (ctx, ref) => {
 			let res = {
 				code: remark.code || remark.key || remark.id,
 				summary: remark.nachrichtKurz || remark.value || remark.ueberschrift || remark.text || remark.shortText
-				|| Object.values(remark.descriptions || {})
-					.shift()?.textShort,
+					|| Object.values(remark.descriptions || {})
+						.shift()?.textShort,
 				text: remark.nachrichtLang || remark.value || remark.text || remark.caption
-				|| Object.values(remark.descriptions || {})
-					.shift()?.text,
+					|| Object.values(remark.descriptions || {})
+						.shift()?.text,
 				type: type,
 			};
 			if (remark.modDateTime || remark.letzteAktualisierung) {
@@ -208,9 +208,9 @@ const parseCancelled = (ref) => {
 		|| ref.journeyCancelled
 		|| (ref.risNotizen || ref.echtzeitNotizen || ref.meldungen) && Boolean(
 			(ref.risNotizen || ref.echtzeitNotizen || ref.meldungen).find(r => r.key == 'text.realtime.stop.cancelled'
-			|| r.type == 'HALT_AUSFALL'
-			|| r.text == 'Halt entfällt'
-			|| r.text == 'Stop cancelled',
+				|| r.type == 'HALT_AUSFALL'
+				|| r.text == 'Halt entfällt'
+				|| r.text == 'Stop cancelled',
 			),
 		);
 };
