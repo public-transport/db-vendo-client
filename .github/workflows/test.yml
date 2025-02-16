@@ -41,7 +41,7 @@ jobs:
       name: restore npm cache
       uses: actions/cache@v4
       with:
-        key: npm-cache-${{ github.ref_name }}
+        key: npm-cache-${{ github.ref_name }}-${{ matrix.node-version }}-unit-tests
         path: ${{ env.npm_config_cache }}
     - run: npm install
 
@@ -68,7 +68,7 @@ jobs:
       name: restore npm cache
       uses: actions/cache@v4
       with:
-        key: npm-cache-${{ github.ref_name }}
+        key: npm-cache-${{ github.ref_name }}-${{ matrix.node-version }}-integration-tests
         path: ${{ env.npm_config_cache }}
     - run: npm install
 
@@ -96,7 +96,7 @@ jobs:
       name: restore npm cache
       uses: actions/cache@v4
       with:
-        key: npm-cache-${{ github.ref_name }}
+        key: npm-cache-${{ github.ref_name }}-${{ matrix.node-version }}-e2e-tests
         path: ${{ env.npm_config_cache }}
     - run: npm install
 
