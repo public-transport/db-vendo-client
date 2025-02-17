@@ -76,6 +76,12 @@ There are [community-maintained TypeScript typings available as `@types/hafas-cl
 > [!IMPORTANT]
 > Depending on your use case, it is very important that you employ caching, either with a simple [HTTP proxy cache](https://github.com/traines-source/time-space-train-planner/blob/master/deployments/nginx-cache.conf) in front of the REST API or by using [cached-hafas-client](https://github.com/public-transport/cached-hafas-client) (where, of course, you can just drop in a `db-vendo-client` instead of a `hafas-client` instance). Also see [db-rest](https://github.com/derhuerst/db-rest), which does this and some more plumbing.
 
+## Browser usage
+
+`db-vendo-client` is mostly browser compatible, however none of the endpoints enables CORS, so it is impossible to use `db-vendo-client` in normal browser environments. It was tested with vite + capacitorjs and should also work with cordova or react native and similar projects.
+
+**Limitations:** Does not work with `enrichStations` option enabled.
+
 ## Related Projects
 
 - [hafas-client](https://github.com/public-transport/hafas-client/) – including further related projects
