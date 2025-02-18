@@ -5,7 +5,7 @@ import tap from 'tap';
 
 import {createClient} from '../index.js';
 import {profile as rawProfile} from '../p/dbnav/index.js';
-import res from './fixtures/dbnav-stop.json' with { type: "json" };
+import res from './fixtures/dbnav-stop.json' with { type: 'json' };
 import {dbnavDepartures as expected} from './fixtures/dbnav-stop.js';
 
 const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: false});

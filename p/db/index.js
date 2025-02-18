@@ -1,5 +1,5 @@
-import dbnavBase from '../dbnav/base.json' with { type: "json" };
-import dbregioguideBase from '../dbregioguide/base.json' with { type: "json" };
+import dbnavBase from '../dbnav/base.json' with { type: 'json' };
+import dbregioguideBase from '../dbregioguide/base.json' with { type: 'json' };
 import {products} from '../../lib/products.js';
 
 // journeys()

@@ -4,7 +4,7 @@ import tap from 'tap';
 
 import {createClient} from '../index.js';
 import {profile as rawProfile} from '../p/dbregioguide/index.js';
-import res from './fixtures/dbregioguide-trip.json' with { type: "json" };
+import res from './fixtures/dbregioguide-trip.json' with { type: 'json' };
 import {dbTrip as expected} from './fixtures/dbregioguide-trip.js';
 
 const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: false});
