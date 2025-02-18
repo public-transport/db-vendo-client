@@ -26,23 +26,24 @@ const validateLocation = (loc, name = 'location') => {
 	}
 };
 
-const loadEnrichedStationData = (profile) => new Promise(async (resolve, reject) => {
-	const { default: readStations} = await import('db-hafas-stations');
-	const items = {};
-	readStations.full()
-		.on('data', (station) => {
-			items[station.id] = station;
-			items[station.name] = station;
-		})
-		.once('end', () => {
-			if (profile.DEBUG) {
-				console.log('Loaded station index.');
-			}
-			resolve(items);
-		})
-		.once('error', (err) => {
-			reject(err);
-		});
+const loadEnrichedStationData = (profile) => new Promise((resolve, reject) => {
+	import('db-hafas-stations').then(m => {
+		const items = {};
+		m.default.full()
+			.on('data', (station) => {
+				items[station.id] = station;
+				items[station.name] = station;
+			})
+			.once('end', () => {
+				if (profile.DEBUG) {
+					console.log('Loaded station index.');
+				}
+				resolve(items);
+			})
+			.once('error', (err) => {
+				reject(err);
+			});
+	});
 });
 
 const createClient = (profile, userAgent, opt = {}) => {
