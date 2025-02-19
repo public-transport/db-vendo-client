@@ -7,7 +7,7 @@ import {profile as rawProfile} from '../p/dbweb/index.js';
 import res from './fixtures/dbweb-departures.json' with { type: 'json' };
 import {dbwebDepartures as expected} from './fixtures/dbweb-departures.js';
 
-const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: true});
+const client = createClient(rawProfile, 'public-transport/hafas-client:test', {enrichStations: false});
 const {profile} = client;
 
 const opt = {

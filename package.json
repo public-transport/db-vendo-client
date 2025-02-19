@@ -1,7 +1,7 @@
 {
 	"name": "db-vendo-client",
 	"description": "Client for bahn.de public transport APIs.",
-	"version": "6.4.0",
+	"version": "6.5.0",
 	"type": "module",
 	"main": "index.js",
 	"files": [
@@ -73,7 +73,7 @@
 		"@pollyjs/adapter-node-http": "^6.0.5",
 		"@pollyjs/core": "^6.0.5",
 		"@pollyjs/persister-fs": "^6.0.5",
-		"@stylistic/eslint-plugin": "^1.5.1",
+		"@stylistic/eslint-plugin": "^3.1.0",
 		"db-rest": "github:derhuerst/db-rest",
 		"eslint": "^9.20.1",
 		"globals": "^15.15.0",
@@ -86,8 +86,8 @@
 		"validate-fptf": "^3.0.0"
 	},
 	"scripts": {
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
+		"lint": "eslint",
+		"lint:fix": "eslint --fix",
 		"test-unit": "tap test/lib/*.js test/*.js test/format/*.js test/parse/*.js",
 		"test-integration": "VCR_MODE=playback tap test/e2e/*.js",
 		"test-integration:record": "VCR_MODE=record tap -t60 -j1 test/e2e/*.js",

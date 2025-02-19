@@ -385,13 +385,14 @@ paths:
               - bahncard-2nd-25
               - bahncard-1st-50
               - bahncard-2nd-50
+              - bahncard-1st-100
+              - bahncard-2nd-100
               - vorteilscard
-              - halbtaxabo-railplus
               - halbtaxabo
-              - voordeelurenabo-railplus
-              - voordeelurenabo
-              - shcard
-              - generalabonnement
+              - generalabonnement-1st
+              - generalabonnement-2nd
+              - nl-40
+              - at-klimaticket
         - name: firstClass
           in: query
           description: Search for first-class options?
@@ -2087,7 +2088,7 @@ components:
           type: string
           format: date-time
         direction:
-          description: only show departures heading to this station
+          description: only show departures heading to this station, only supported for `dbweb` profile
           default: undefined
           type: string
         line:
@@ -2124,7 +2125,7 @@ components:
           type: boolean
         includeRelatedStations:
           description: departures at related stations
-          default: false
+          default: true
           type: boolean
         products:
           $ref: '#/components/schemas/Products'

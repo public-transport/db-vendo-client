@@ -4,6 +4,7 @@ import {parseProducts} from '../../parse/products.js';
 
 const profile = {
 	parseLocation: parse,
+	enrichStation: (ctx, stop) => stop,
 	parseStationName: (_, name) => name.toLowerCase(),
 	parseProducts,
 	products: [{

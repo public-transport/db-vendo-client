@@ -40,7 +40,7 @@ const createParseArrOrDep = (prefix) => {
 			res.remarks = profile.parseRemarks(ctx, d);
 		}
 
-		if (opt.stopovers && Array.isArray(d.ueber)) {
+		if ((opt.stopovers || opt.direction) && Array.isArray(d.ueber)) {
 			const stopovers = d.ueber
 				.map(viaName => profile.parseStopover(ctx, {name: viaName}, null));
 

@@ -16,11 +16,11 @@ const parseJourneyLeg = (ctx, pt, date, fallbackLocations) => { // pt = raw leg
 	const stops = pt.halte?.length && pt.halte || pt.stops?.length && pt.stops || [];
 	const res = {
 		origin: stops.length && profile.parseLocation(ctx, stops[0].ort || stops[0].station || stops[0])
-		|| pt.abgangsOrt?.name && profile.parseLocation(ctx, pt.abgangsOrt)
-		|| locationFallback(pt.abfahrtsOrtExtId, pt.abfahrtsOrt, fallbackLocations),
+			|| pt.abgangsOrt?.name && profile.parseLocation(ctx, pt.abgangsOrt)
+			|| locationFallback(pt.abfahrtsOrtExtId, pt.abfahrtsOrt, fallbackLocations),
 		destination: stops.length && profile.parseLocation(ctx, stops[stops.length - 1].ort || stops[stops.length - 1].station || stops[stops.length - 1])
-		|| pt.ankunftsOrt?.name && profile.parseLocation(ctx, pt.ankunftsOrt)
-		|| locationFallback(pt.ankunftsOrtExtId, pt.ankunftsOrt, fallbackLocations),
+			|| pt.ankunftsOrt?.name && profile.parseLocation(ctx, pt.ankunftsOrt)
+			|| locationFallback(pt.ankunftsOrtExtId, pt.ankunftsOrt, fallbackLocations),
 	};
 
 	const cancelledDep = stops.length && profile.parseCancelled(stops[0]);

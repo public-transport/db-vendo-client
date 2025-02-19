@@ -14,7 +14,7 @@ const parseLocation = (ctx, l) => {
 	}
 
 	const lid = parse(l.id || l.locationId, {delimiter: '@'});
-	const res = {
+	let res = {
 		type: 'location',
 		id: (l.extId || l.evaNr || lid.L || l.evaNumber || l.evaNo || l.bahnhofsId || '').replace(leadingZeros, '') || null,
 	};
@@ -46,13 +46,7 @@ const parseLocation = (ctx, l) => {
 			stop.products = profile.parseProducts(ctx, l.products);
 		}
 
-		if (common && common.locations && common.locations[stop.id]) {
-			delete stop.type;
-			stop = {
-				...common.locations[stop.id],
-				...stop,
-			};
-		}
+		stop = profile.enrichStation(ctx, stop);
 
 		// TODO isMeta
 		// TODO entrances, lines
@@ -70,6 +64,8 @@ const parseLocation = (ctx, l) => {
 	}
 
 	res.name = name;
+	res = enrichStation(ctx, res);
+
 	if (l.type === ADDRESS || lid.A == '2') {
 		res.address = name;
 	}
@@ -80,6 +76,22 @@ const parseLocation = (ctx, l) => {
 	return res;
 };
 
+const enrichStation = (ctx, stop, locations) => {
+	const {common} = ctx;
+	const locs = locations || common?.locations;
+	const rich = locs && (locs[stop.id] || locs[stop.name]);
+	if (rich) {
+		delete stop.type;
+		delete stop.id;
+		stop = {
+			...rich,
+			...stop,
+		};
+	}
+	return stop;
+};
+
 export {
 	parseLocation,
+	enrichStation,
 };

@@ -24,7 +24,7 @@ With `opt`, you can override the default options, which look like this:
 ```js
 {
 	when:      new Date(),
-	direction: null, // not supported
+	direction: null, // only supported in `dbweb` and with `enrichStations=true` (experimental)
 	line: null, // not supported
 	duration:  10, // show departures for the next n minutes
 	results: null, // max. number of results; `null` means "whatever HAFAS wants"
@@ -35,7 +35,7 @@ With `opt`, you can override the default options, which look like this:
 	stopovers: false, // fetch & parse previous/next stopovers?, only supported with `dbweb` profile
 	// departures at related stations
 	// e.g. those that belong together on the metro map.
-	includeRelatedStations: true, // only true supported
+	includeRelatedStations: true,
 	language: 'en' // language to get results in
 }
 ```

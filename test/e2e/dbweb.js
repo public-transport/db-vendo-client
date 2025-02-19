@@ -395,17 +395,8 @@ tap.test('trip details', async (t) => {
 });
 
 tap.test('departures at Berlin Schwedter Str.', async (t) => {
-	const res = await new Promise((resolve) => {
-		let interval = setInterval(async () => { // repeat evaluating `departures()` until stations are enriched
-			const res = await client.departures(blnSchwedterStr, {
-				duration: 5, when,
-			});
-
-			if (res.departures[0].stop.name !== undefined) { // ctx.common.locations have loaded
-				clearInterval(interval);
-				return resolve(res);
-			}
-		}, 4000);
+	const res = await client.departures(blnSchwedterStr, {
+		duration: 5, when,
 	});
 
 	await testDepartures({
@@ -418,42 +409,24 @@ tap.test('departures at Berlin Schwedter Str.', async (t) => {
 });
 
 tap.test('departures with station object', async (t) => {
-	const res = await new Promise((resolve) => {
-		let interval = setInterval(async () => { // repeat evaluating `departures()` until stations are enriched
-			const res = await client.departures({
-				type: 'station',
-				id: jungfernheide,
-				name: 'Berlin Jungfernheide',
-				location: {
-					type: 'location',
-					latitude: 1.23,
-					longitude: 2.34,
-				},
-			}, {when});
-
-			if (res.departures[0].stop.name !== undefined) { // ctx.common.locations have loaded
-				clearInterval(interval);
-				return resolve(res);
-			}
-		}, 4000);
-	});
+	const res = await client.departures({
+		type: 'station',
+		id: jungfernheide,
+		name: 'Berlin Jungfernheide',
+		location: {
+			type: 'location',
+			latitude: 1.23,
+			longitude: 2.34,
+		},
+	}, {when});
 
 	validate(t, res, 'departuresResponse', 'res');
 	t.end();
 });
 
 tap.test('arrivals at Berlin Schwedter Str.', async (t) => {
-	const res = await new Promise((resolve) => {
-		let interval = setInterval(async () => { // repeat evaluating `arrivals()` until stations are enriched
-			const res = await client.arrivals(blnSchwedterStr, {
-				duration: 5, when,
-			});
-
-			if (res.arrivals[0].stop.name !== undefined) { // ctx.common.locations have loaded
-				clearInterval(interval);
-				return resolve(res);
-			}
-		}, 4000);
+	const res = await client.arrivals(blnSchwedterStr, {
+		duration: 5, when,
 	});
 
 	await testArrivals({

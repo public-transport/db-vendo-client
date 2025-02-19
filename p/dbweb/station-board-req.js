@@ -8,7 +8,7 @@ const formatStationBoardReq = (ctx, station, type) => {
 			ortExtId: station,
 			zeit: profile.formatTimeOfDay(profile, opt.when),
 			datum: profile.formatDate(profile, opt.when),
-			mitVias: opt.stopovers || undefined,
+			mitVias: opt.stopovers || Boolean(opt.direction) || undefined,
 			verkehrsmittel: profile.formatProductsFilter(ctx, opt.products || {}),
 		},
 		method: 'GET',

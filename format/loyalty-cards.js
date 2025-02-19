@@ -6,9 +6,10 @@ const c = {
 	VOORDEELURENABO: Symbol('Voordeelurenabo'),
 	SHCARD: Symbol('SH-Card'),
 	GENERALABONNEMENT: Symbol('General-Abonnement'),
+	NL_40: Symbol('NL-40%'),
+	AT_KLIMATICKET: Symbol('AT-KlimaTicket'),
 };
 
-// see https://gist.github.com/juliuste/202bb04f450a79f8fa12a2ec3abcd72d
 const formatLoyaltyCard = (data) => {
 	if (!data) {
 		return {
@@ -19,7 +20,7 @@ const formatLoyaltyCard = (data) => {
 	const cls = data.class === 1 ? 'KLASSE_1' : 'KLASSE_2';
 	if (data.type.toString() === c.BAHNCARD.toString()) {
 		return {
-			art: 'BAHNCARD' + data.discount,
+			art: 'BAHNCARD' + (data.business ? 'BUSINESS' : '') + data.discount,
 			klasse: cls,
 		};
 	}
@@ -35,11 +36,22 @@ const formatLoyaltyCard = (data) => {
 			klasse: 'KLASSENLOS',
 		};
 	}
-	// TODO Rest
 	if (data.type.toString() === c.GENERALABONNEMENT.toString()) {
 		return {
 			art: 'CH-GENERAL-ABONNEMENT',
 			klasse: cls,
+		};
+	}
+	if (data.type.toString() === c.NL_40.toString()) {
+		return {
+			art: 'NL-40_OHNE_RAILPLUS',
+			klasse: 'KLASSENLOS',
+		};
+	}
+	if (data.type.toString() === c.AT_KLIMATICKET.toString()) {
+		return {
+			art: 'KLIMATICKET_OE',
+			klasse: 'KLASSENLOS',
 		};
 	}
 	return {
