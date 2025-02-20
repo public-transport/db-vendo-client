@@ -28,7 +28,6 @@ jobs:
           - 18.x
           - 20.x
           - 22.x
-          - 24.x
     steps:
     - name: checkout
       uses: actions/checkout@v4
@@ -55,7 +54,6 @@ jobs:
           - 18.x
           - 20.x
           - 22.x
-          - 24.x
     steps:
     - name: checkout
       uses: actions/checkout@v4
