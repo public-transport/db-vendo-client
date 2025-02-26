@@ -1,4 +1,4 @@
-import isObj from 'lodash/isObject.js';
+const isObj = element => element !== null && 'object' === typeof element && !Array.isArray(element);
 
 const hasProp = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 

@@ -61,7 +61,6 @@
 		"db-hafas-stations": "^1.0.0",
 		"gps-distance": "0.0.4",
 		"https-proxy-agent": "^7.0.0",
-		"lodash": "^4.17.5",
 		"luxon": "^3.1.1",
 		"qs": "^6.6.0",
 		"slugg": "^1.2.0",

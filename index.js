@@ -1,8 +1,9 @@
-import isObj from 'lodash/isObject.js';
 import distance from 'gps-distance';
 
 import {defaultProfile} from './lib/default-profile.js';
 import {validateProfile} from './lib/validate-profile.js';
+
+const isObj = element => element !== null && 'object' === typeof element && !Array.isArray(element);
 
 // background info: https://github.com/public-transport/hafas-client/issues/286
 const FORBIDDEN_USER_AGENTS = [

@@ -29,6 +29,7 @@ const config = [
 			'@stylistic/multiline-comment-style': 'off',
 			'@stylistic/multiline-ternary': ['error', 'always-multiline'],
 			'@stylistic/newline-per-chained-call': ['error', {ignoreChainWithDepth: 1}],
+			'@stylistic/no-extra-parens': 'off',
 			'@stylistic/no-mixed-operators': 'off',
 			'@stylistic/no-tabs': 'off',
 			'@stylistic/object-property-newline': 'off',

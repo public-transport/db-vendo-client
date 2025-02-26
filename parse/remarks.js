@@ -1,8 +1,6 @@
-import flatMap from 'lodash/flatMap.js';
-
 const parseRemarks = (ctx, ref) => {
 	// TODO ereignisZusammenfassung, priorisierteMeldungen?
-	return flatMap([
+	return [
 		ref.disruptions || [],
 		ref.risNotizen || [],
 		ref.echtzeitNotizen && ref.echtzeitNotizen.map(e => {
@@ -18,7 +16,7 @@ const parseRemarks = (ctx, ref) => {
 		ref.attributNotizen || [],
 		ref.attributes || [],
 		ref.verkehrsmittel?.zugattribute || [],
-	])
+	].flatMap(item => item)
 		.map(remark => {
 			if (remark.kategorie || remark.priority) {
 				const res = ctx.profile.parseHintByCode(remark);
