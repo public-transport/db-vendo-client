@@ -16,7 +16,7 @@ const parseRemarks = (ctx, ref) => {
 		ref.attributNotizen || [],
 		ref.attributes || [],
 		ref.verkehrsmittel?.zugattribute || [],
-	].flatMap(item => item)
+	].flat()
 		.map(remark => {
 			if (remark.kategorie || remark.priority) {
 				const res = ctx.profile.parseHintByCode(remark);
