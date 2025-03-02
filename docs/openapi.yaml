@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: db-vendo-client
-  description: Schema for db-vendo-client/hafas-rest-api's Friendy Public Transport Format REST API
+  description: Schema for db-vendo-client/hafas-rest-api's Friendly Public Transport Format REST API
   contact:
     url: https://github.com/public-transport/db-vendo-client
   version: '6'
@@ -275,7 +275,7 @@ paths:
             format: date-time
         - name: earlierThan
           in: query
-          description: Compute journeys "before" an `ealierRef`.
+          description: Compute journeys "before" an `earlierRef`.
           schema:
             type: string
         - name: laterThan

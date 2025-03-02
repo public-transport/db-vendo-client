@@ -134,7 +134,7 @@ Unexpected errors – e.g. due to bugs in `db-vendo-client` itself – aside, it
 
 Each `HafasError` error has the following properties:
 
-- `isHafasError` – Always `true`. Allows you to differente HAFAS-related errors from e.g. network errors.
+- `isHafasError` – Always `true`. Allows you to distinguish HAFAS-related errors from e.g. network errors.
 - `code` – A string representing the error type for all other error classes, e.g. `INVALID_REQUEST` for `HafasInvalidRequestError`. `null` for plain `HafasError`s.
 - `isCausedByServer` – Boolean, telling you if the HAFAS endpoint says that it couldn't process your request because *it* is unavailable/broken.
 - `hafasCode` – A HAFAS-specific error code, if the HAFAS endpoint returned one; e.g. `H890` when no journeys could be found. `null` otherwise.

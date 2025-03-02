@@ -211,7 +211,7 @@ tap.test('Berlin Schwedter Str. to ATZE Musiktheater', async (t) => {
 });
 
 tap.test('journeys: via works – with detour', async (t) => {
-	// Going from Westhafen to Wedding via Württembergalle without detour
+	// Going from Westhafen to Wedding via Württembergallee without detour
 	// is currently impossible. We check if the routing engine computes a detour.
 	const res = await client.journeys(westhafen, wedding, {
 		via: württembergallee,

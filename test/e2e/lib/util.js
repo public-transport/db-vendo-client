@@ -1,4 +1,4 @@
-// Polly's HTTP adapter uses nock [1] underneath, with currenctly monkey-patches the built-in `node:http` module. For this to work, it must be imported quite early, before many other parts of hafas-client.
+// Polly's HTTP adapter uses nock [1] underneath, with currently monkey-patches the built-in `node:http` module. For this to work, it must be imported quite early, before many other parts of hafas-client.
 // Importing the adapter itself has no side effects (or rather: immediately undoes nock's monkey-patching, to re-patch when it is actually getting used). We activate it (by passing it into Polly's core) below.
 // remotely related: https://github.com/nock/nock/issues/2461
 import NodeHttpAdapter from '@pollyjs/adapter-node-http';
