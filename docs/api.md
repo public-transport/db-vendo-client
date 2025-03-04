@@ -12,7 +12,7 @@ Also see the [root readme](https://github.com/public-transport/db-vendo-client) 
 - [`locations(query, [opt])`](locations.md) – find stations, POIs and addresses
 - [`stop(id, [opt])`](stop.md) – get details about a stop/station
 - [`nearby(location, [opt])`](nearby.md) – show stations & POIs around
-- `radar(north, west, south, east, [opt])` – not supporteda
+- `radar(north, west, south, east, [opt])` – not supported
 - `reachableFrom(address, [opt])` – not supported
 - `remarks([opt])` – not supported
 - `lines(query, [opt])` – not supported

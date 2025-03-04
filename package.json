@@ -73,6 +73,7 @@
 		"@pollyjs/core": "^6.0.6",
 		"@pollyjs/persister-fs": "^6.0.6",
 		"@stylistic/eslint-plugin": "^4.1.0",
+		"cspell": "^8.17.5",
 		"db-rest": "github:derhuerst/db-rest",
 		"eslint": "^9.21.0",
 		"globals": "^16.0.0",
@@ -91,7 +92,8 @@
 		"test-integration": "VCR_MODE=playback tap test/e2e/*.js",
 		"test-integration:record": "VCR_MODE=record tap -t60 -j1 test/e2e/*.js",
 		"test-e2e": "VCR_OFF=true tap -t60 -j16 test/e2e/*.js",
-		"test": "npm run test-unit && npm run test-integration",
+		"test-spelling": "cspell .",
+		"test": "npm run test-unit && npm run test-integration && npm run test-spelling",
 		"prepublishOnly": "npm run lint && npm test",
 		"api": "node api.js"
 	},

@@ -12,7 +12,7 @@ const regensburgHbf = '8000309'
 let data = await client.locations('Berlin Jungfernheide')
 // let data = await client.locations('Atze Musiktheater', {
 // 	poi: true,
-// 	addressses: false,
+// 	addresses: false,
 // 	fuzzy: false,
 // })
 // let data = await client.nearby({
