@@ -6,7 +6,7 @@ env:
   npm_config_cache: /tmp/npm-cache
 
 jobs:
-  lint:
+  lint-and-spellcheck:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -18,7 +18,11 @@ jobs:
           node-version: 'lts/*'
       - run: npm install
 
-      - run: npm run lint
+      - name: Run lint check
+        run: npm run lint
+
+      - name: Run spell check
+        run: npm run test-spelling
 
   unit-tests:
     runs-on: ubuntu-latest
