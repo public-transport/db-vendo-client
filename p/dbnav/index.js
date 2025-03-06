@@ -8,6 +8,7 @@ import {formatStopReq} from './stop-req.js';
 import {formatNearbyReq} from './nearby-req.js';
 import {formatStationBoardReq} from './station-board-req.js';
 import {parseStop} from './parse-stop.js';
+import {parseJourney} from './parse-journey.js';
 
 const profile = {
 	...baseProfile,
@@ -24,6 +25,7 @@ const profile = {
 	formatStationBoardReq,
 	formatLocationFilter,
 
+	parseJourney,
 	parseStop,
 };
 
