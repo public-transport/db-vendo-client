@@ -626,7 +626,8 @@
   "ignorePaths": [
     "docs/dumps/**",
     "test/e2e/fixtures/**",
-    "test/parse/remarks.js"
+    "test/parse/remarks.js",
+	"test/parse/dbnav-journey.js"
   ],
   "dictionaries": [
     "node"
