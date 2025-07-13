@@ -183,6 +183,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 			bestprice: false, // search for lowest prices across the entire day
 			deutschlandTicketDiscount: false,
 			deutschlandTicketConnectionsOnly: false,
+			bmisNumber: null, // 7-digit BMIS number for business customer rates
 		}, opt);
 
 		if (opt.when !== undefined) {
@@ -243,6 +244,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 			scheduledDays: false, // parse & expose dates the journey is valid on?
 			deutschlandTicketDiscount: false,
 			deutschlandTicketConnectionsOnly: false,
+			bmisNumber: null, // 7-digit BMIS number for business customer rates
 		}, opt);
 
 		const req = profile.formatRefreshJourneyReq({profile, opt}, refreshToken);
@@ -395,7 +397,33 @@ const createClient = (profile, userAgent, opt = {}) => {
 	return client;
 };
 
+const createBusinessClient = (profile, userAgent, bmisNumber, opt = {}) => {
+	if (!bmisNumber || typeof bmisNumber !== 'string') {
+		throw new TypeError('bmisNumber must be a non-empty string');
+	}
+
+	// Create a client with BMIS number included in all journey requests
+	const client = createClient(profile, userAgent, opt);
+
+	// Wrap journeys method to always include BMIS number
+	const originalJourneys = client.journeys;
+	client.journeys = async (from, to, opt = {}) => {
+		return originalJourneys(from, to, {...opt, bmisNumber});
+	};
+
+	// Wrap refreshJourney method to always include BMIS number
+	if (client.refreshJourney) {
+		const originalRefreshJourney = client.refreshJourney;
+		client.refreshJourney = async (refreshToken, opt = {}) => {
+			return originalRefreshJourney(refreshToken, {...opt, bmisNumber});
+		};
+	}
+
+	return client;
+};
+
 export {
 	createClient,
+	createBusinessClient,
 	loadEnrichedStationData,
 };

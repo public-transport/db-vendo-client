@@ -81,6 +81,7 @@ With `opt`, you can override the default options, which look like this:
 	firstClass: false, // first or second class for tickets
 	loyaltyCard: null, // BahnCards etc., see below
 	language: 'en', // language to get results in
+	bmisNumber: null, // 7-digit BMIS number for business customer rates
 }
 ```
 
@@ -315,6 +316,27 @@ hafas.journeys(from, to, {
 	loyaltyCard: {type: data.BAHNCARD, discount: 25}
 })
 ```
+
+## Using the `bmisNumber` option
+
+bahn.business customers with a BMIS number can get their corporate rates and corporate tariffs by providing their 7-digit BMIS number:
+
+```js
+// Option 1: Using the bmisNumber parameter directly
+await client.journeys(from, to, {
+	bmisNumber: '1234567' // Your 7-digit BMIS number
+})
+
+// Option 2: Using the createBusinessClient helper function
+import {createBusinessClient} from 'db-vendo-client'
+import {profile as dbProfile} from 'db-vendo-client/p/db/index.js'
+
+const businessClient = createBusinessClient(dbProfile, userAgent, '1234567')
+// Now all journey searches will automatically include the BMIS number
+await businessClient.journeys(from, to)
+```
+
+When a BMIS number is provided, the request will include a `firmenZugehoerigkeit` object with the BMIS number and identification type, allowing business customers to access their special rates and conditions.
 
 ## The `routingMode` option
 

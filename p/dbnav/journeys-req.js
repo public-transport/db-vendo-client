@@ -4,7 +4,7 @@ const formatBaseJourneysReq = (ctx) => {
 	// TODO opt.accessibility
 	// TODO routingMode
 	const travellers = ctx.profile.formatTravellers(ctx);
-	return {
+	const baseReq = {
 		autonomeReservierung: false,
 		einstiegsTypList: [
 			'STANDARD',
@@ -27,6 +27,16 @@ const formatBaseJourneysReq = (ctx) => {
 		},
 		reservierungsKontingenteVorhanden: false,
 	};
+
+	// Add business customer affiliation if BMIS number is provided
+	if (ctx.opt.bmisNumber) {
+		baseReq.firmenZugehoerigkeit = {
+			bmisNr: ctx.opt.bmisNumber,
+			identifikationsart: 'BMIS',
+		};
+	}
+
+	return baseReq;
 };
 
 const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
