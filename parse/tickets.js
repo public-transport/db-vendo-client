@@ -11,7 +11,7 @@ const parsePrice = (ctx, raw) => {
 			partialFare: partialFare,
 		};
 	}
-	
+
 	// For Verbundtickets, try to get the lowest price from reiseAngebote
 	if (raw.reiseAngebote && raw.reiseAngebote.length > 0) {
 		let lowestPrice = null;
@@ -43,7 +43,7 @@ const parsePrice = (ctx, raw) => {
 			return lowestPrice;
 		}
 	}
-	
+
 	return undefined;
 };
 
@@ -55,7 +55,7 @@ const parseTickets = (ctx, j) => {
 	let price = parsePrice(ctx, j);
 	// Handle DB Navigator mobile API format
 	let ang = j.reiseAngebote;
-	
+
 	// If no reiseAngebote, check for angebote.angebotsCluster (DB Navigator mobile format)
 	if (!ang && j.angebote?.angebotsCluster) {
 		ang = j.angebote.angebotsCluster.flatMap(c => c.angebotsSubCluster
@@ -63,28 +63,28 @@ const parseTickets = (ctx, j) => {
 				.flatMap(p => {
 					// Extract all possible ticket types from DB Navigator format
 					const positions = [];
-					
+
 					// Handle verbundAngebot
 					if (p.verbundAngebot?.reisePosition?.reisePosition) {
 						const rp = p.verbundAngebot.reisePosition.reisePosition;
 						rp.teilpreis = Boolean(p.verbundAngebot.reisePosition.teilpreisInformationen?.length);
 						positions.push(rp);
 					}
-					
+
 					// Handle regular einfacheFahrt
 					if (p.einfacheFahrt?.standard?.reisePosition) {
-						const rp = p.einfacheFahrt.standard.reisePosition;
+						const rp = p.einfacheFahrt.standard.reisePosition.reisePosition || p.einfacheFahrt.standard.reisePosition;
 						rp.teilpreis = Boolean(p.einfacheFahrt.standard.teilpreisInformationen?.length);
 						positions.push(rp);
 					}
-					
+
 					// Handle upsell
 					if (p.einfacheFahrt?.upsellEntgelt?.einfacheFahrt?.reisePosition) {
-						const rp = p.einfacheFahrt.upsellEntgelt.einfacheFahrt.reisePosition;
+						const rp = p.einfacheFahrt.upsellEntgelt.einfacheFahrt.reisePosition.reisePosition || p.einfacheFahrt.upsellEntgelt.einfacheFahrt.reisePosition;
 						rp.teilpreis = Boolean(p.einfacheFahrt.upsellEntgelt.einfacheFahrt.teilpreisInformationen?.length);
 						positions.push(rp);
 					}
-					
+
 					return positions;
 				}),
 			),

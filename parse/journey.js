@@ -41,7 +41,7 @@ const trimJourneyId = (journeyId) => {
 	return journeyId;
 };
 
-const parseJourney = (ctx, jj) => { // j = raw journey
+const parseJourney = async (ctx, jj) => { // j = raw journey
 	const {profile, opt} = ctx;
 	const j = jj.verbindung || jj;
 	const fallbackLocations = parseLocationsFromCtxRecon(ctx, j);
@@ -87,17 +87,16 @@ const parseJourney = (ctx, jj) => { // j = raw journey
 	const hasVerbundCode = angebote?.verbundCode;
 	const hasEmptyAngebotsCluster = !angebote?.angebotsCluster || angebote.angebotsCluster.length === 0;
 	const hasKontext = j.kontext || j.ctxRecon;
-	
+
 	// Also check for the warning message that prices need to be fetched
-	const hasVerbundWarning = angebote?.angebotsMeldungen?.some(msg => 
-		msg.includes('Verbindung liegt in der Vergangenheit') || 
-		msg.includes('Preis') || 
-		msg.includes('Verbund')
+	const hasVerbundWarning = angebote?.angebotsMeldungen?.some(msg => msg.includes('Verbindung liegt in der Vergangenheit')
+		|| msg.includes('Preis')
+		|| msg.includes('Verbund'),
 	);
-	
-	if ((hasVerbundCode && hasEmptyAngebotsCluster || hasVerbundWarning) && hasKontext && userAgent && opt.tickets && opt.autoFetchVerbundtickets) {
+
+	if ((hasVerbundCode && hasEmptyAngebotsCluster || hasVerbundWarning) && hasKontext && ctx.userAgent && opt.tickets && opt.autoFetchVerbundtickets) {
 		// Fetch Verbundticket prices via recon API
-		const reconResult = await fetchVerbundticketPrices(ctx, userAgent, j);
+		const reconResult = await fetchVerbundticketPrices(ctx, ctx.userAgent, j);
 		if (reconResult) {
 			// Use the recon result for price and ticket parsing
 			if (reconResult.angebote) {

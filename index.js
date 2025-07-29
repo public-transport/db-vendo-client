@@ -110,7 +110,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 
 		const {res} = await profile.request({profile, opt}, userAgent, req);
 
-		const ctx = {profile, opt, common, res};
+		const ctx = {profile, opt, common, res, userAgent};
 		let results = (res[resultsField] || res.items || res.bahnhofstafelAbfahrtPositionen || res.bahnhofstafelAnkunftPositionen || res.entries.flat())
 			.map(res => parse(ctx, res)); // TODO sort?, slice
 
@@ -209,13 +209,13 @@ const createClient = (profile, userAgent, opt = {}) => {
 
 		const req = profile.formatJourneysReq({profile, opt}, from, to, when, outFrwd, journeysRef);
 		const {res} = await profile.request({profile, opt}, userAgent, req);
-		const ctx = {profile, opt, common, res};
+		const ctx = {profile, opt, common, res, userAgent};
 		if (opt.bestprice) {
 			res.verbindungen = (res.intervalle || res.tagesbestPreisIntervalle).flatMap(i => i.verbindungen.map(v => ({...v, ...v.verbindung})));
 		}
 		const verbindungen = Number.isInteger(opt.results) && opt.results != 3 ? res.verbindungen.slice(0, opt.results) : res.verbindungen; // TODO remove default from hafas-rest-api
-		const journeys = verbindungen
-			.map(j => profile.parseJourney(ctx, j));
+		const journeys = await Promise.all(verbindungen
+			.map(j => profile.parseJourney(ctx, j)));
 		if (opt.bestprice) {
 			journeys.sort((a, b) => a.price?.amount - b.price?.amount);
 		}
@@ -252,10 +252,10 @@ const createClient = (profile, userAgent, opt = {}) => {
 		const req = profile.formatRefreshJourneyReq({profile, opt}, refreshToken);
 
 		const {res} = await profile.request({profile, opt}, userAgent, req);
-		const ctx = {profile, opt, common, res};
+		const ctx = {profile, opt, common, res, userAgent};
 
 		return {
-			journey: profile.parseJourney(ctx, res.verbindungen && res.verbindungen[0] || res),
+			journey: await profile.parseJourney(ctx, res.verbindungen && res.verbindungen[0] || res),
 			realtimeDataUpdatedAt: null, // TODO
 		};
 	};
@@ -280,7 +280,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 
 		const {res} = await profile.request({profile, opt}, userAgent, req);
 
-		const ctx = {profile, opt, common, res};
+		const ctx = {profile, opt, common, res, userAgent};
 		const results = res.map(loc => profile.parseLocation(ctx, loc));
 
 		return Number.isInteger(opt.results)
@@ -329,7 +329,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 		const req = profile.formatNearbyReq({profile, opt}, location);
 		const {res} = await profile.request({profile, opt}, userAgent, req);
 
-		const ctx = {profile, opt, common, res};
+		const ctx = {profile, opt, common, res, userAgent};
 		const results = res.map(loc => {
 			const res = profile.parseLocation(ctx, loc);
 			if (res.latitude || res.location?.latitude) {
@@ -361,7 +361,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 		const req = profile.formatTripReq({profile, opt}, id);
 
 		const {res} = await profile.request({profile, opt}, userAgent, req);
-		const ctx = {profile, opt, common, res};
+		const ctx = {profile, opt, common, res, userAgent};
 
 		const trip = profile.parseTrip(ctx, res, id);
 
