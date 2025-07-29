@@ -184,6 +184,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 			deutschlandTicketDiscount: false,
 			deutschlandTicketConnectionsOnly: false,
 			bmisNumber: null, // 7-digit BMIS number for business customer rates
+			autoFetchVerbundtickets: false, // automatically fetch Verbundticket prices via recon API
 		}, opt);
 
 		if (opt.when !== undefined) {
@@ -245,6 +246,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 			deutschlandTicketDiscount: false,
 			deutschlandTicketConnectionsOnly: false,
 			bmisNumber: null, // 7-digit BMIS number for business customer rates
+			autoFetchVerbundtickets: false, // automatically fetch Verbundticket prices via recon API
 		}, opt);
 
 		const req = profile.formatRefreshJourneyReq({profile, opt}, refreshToken);
