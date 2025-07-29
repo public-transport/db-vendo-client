@@ -26,9 +26,9 @@ const opt = {
 	products: {},
 };
 
-tap.test('parses a dbweb journey correctly', (t) => { // TODO DEVI leg
+tap.test('parses a dbweb journey correctly', async (t) => { // TODO DEVI leg
 	const ctx = {profile, opt, common: null, res};
-	const journey = profile.parseJourney(ctx, res.verbindungen[0]);
+	const journey = await profile.parseJourney(ctx, res.verbindungen[0]);
 
 	t.same(journey, expected);
 	t.end();

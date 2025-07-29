@@ -634,7 +634,13 @@
     "dbbahnhof",
     "Deutschlandticket",
     "fahrverguenstigungen",
-    "cancelation"
+    "cancelation",
+    "Verbund",
+    "Verbundticket",
+    "Verbundtickets",
+    "verbundticket",
+    "Vergangenheit",
+    "reisewunsch"
   ],
   "ignorePaths": [
     "docs/dumps/**",

@@ -1,4 +1,5 @@
 import {parseRemarks} from './remarks.js';
+import {fetchVerbundticketPrices} from '../lib/fetch-verbundticket-prices.js';
 
 const createFakeWalkingLeg = (prevLeg, leg) => {
 	const fakeWalkingLeg = {
@@ -40,7 +41,7 @@ const trimJourneyId = (journeyId) => {
 	return journeyId;
 };
 
-const parseJourney = (ctx, jj) => { // j = raw journey
+const parseJourney = async (ctx, jj) => { // j = raw journey
 	const {profile, opt} = ctx;
 	const j = jj.verbindung || jj;
 	const fallbackLocations = parseLocationsFromCtxRecon(ctx, j);
@@ -80,10 +81,48 @@ const parseJourney = (ctx, jj) => { // j = raw journey
 		}));
 	}
 
-	res.price = profile.parsePrice(ctx, jj);
-	const tickets = profile.parseTickets(ctx, jj);
-	if (tickets) {
-		res.tickets = tickets;
+	// Check if this is a Verbundticket that needs price fetching
+	// DB Navigator mobile API: Verbundtickets have an 'angebote' section with 'verbundCode' but empty 'angebotsCluster'
+	const angebote = jj.angebote || j.angebote;
+	const hasVerbundCode = angebote?.verbundCode;
+	const hasEmptyAngebotsCluster = !angebote?.angebotsCluster || angebote.angebotsCluster.length === 0;
+	const hasKontext = j.kontext || j.ctxRecon;
+
+	// Also check for the warning message that prices need to be fetched
+	const hasVerbundWarning = angebote?.angebotsMeldungen?.some(msg => msg.includes('Verbindung liegt in der Vergangenheit')
+		|| msg.includes('Preis')
+		|| msg.includes('Verbund'),
+	);
+
+	if ((hasVerbundCode && hasEmptyAngebotsCluster || hasVerbundWarning) && hasKontext && ctx.userAgent && opt.tickets && opt.autoFetchVerbundtickets) {
+		// Fetch Verbundticket prices via recon API
+		const reconResult = await fetchVerbundticketPrices(ctx, ctx.userAgent, j);
+		if (reconResult) {
+			// Use the recon result for price and ticket parsing
+			if (reconResult.angebote) {
+				// Store the fetched angebote data in the original response for parsing
+				jj.angebote = reconResult.angebote;
+			}
+			res.price = profile.parsePrice(ctx, jj);
+			const tickets = profile.parseTickets(ctx, jj);
+			if (tickets) {
+				res.tickets = tickets;
+			}
+		} else {
+			// Fallback to original parsing
+			res.price = profile.parsePrice(ctx, jj);
+			const tickets = profile.parseTickets(ctx, jj);
+			if (tickets) {
+				res.tickets = tickets;
+			}
+		}
+	} else {
+		// Regular journey parsing
+		res.price = profile.parsePrice(ctx, jj);
+		const tickets = profile.parseTickets(ctx, jj);
+		if (tickets) {
+			res.tickets = tickets;
+		}
 	}
 
 	return res;

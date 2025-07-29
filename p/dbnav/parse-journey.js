@@ -1,6 +1,6 @@
 import {parseJourney as parseJourneyDefault} from '../../parse/journey.js';
 
-const parseJourney = (ctx, jj) => {
+const parseJourney = async (ctx, jj) => {
 	const legs = (jj.verbindung || jj).verbindungsAbschnitte;
 	if (legs.length > 0) {
 		legs[0] = preprocessJourneyLeg(legs[0]);
