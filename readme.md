@@ -25,7 +25,7 @@ Depending on the configured profile, db-vendo-client will use multiple different
 
 | Profile               | `db`              | `dbnav` | `dbweb` | `dbris` |
 | -------------         | -------------     | ------------- | ------------- | ------------- |
-| no API key required   | ✅                | ✅ |  ✅ | ✅ | ❌ |
+| no API key required   | ✅                | ✅ |  ✅ | ❌ |
 | all above endpoints supported | ✅              | ✅ | except `stop()` | only boards |
 | duration for boards   | always 1h         | always 1h | always 1h | up to 12h |
 | remarks               | for boards only most important remarks    | for boards only most important remarks | all remarks on boards and journeys | all  remarks |
@@ -37,7 +37,7 @@ Depending on the configured profile, db-vendo-client will use multiple different
 | adminCode/operator    | only for journeys | only for journeys | only operator | ✅ |
 | stopovers             | not in boards | not in boards | ✅ | ✅ |
 | assumed backend API stability | less stable | more stable | less stable | more stable |
-| quotas | 60 requests per minute (IPv4) | 60 requests per minute (IPv4), possibly aggressive blocking | aggressive blocking (IPv4/IPv6) | depends on API key |
+| quotas | 60 requests per minute (IPv4), current backend possibly shut off soon | 60 requests per minute (IPv4), possibly aggressive blocking | aggressive blocking (IPv4/IPv6) | depends on API key |
 
 
 > [!IMPORTANT]

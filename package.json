@@ -95,7 +95,7 @@
 		"test-e2e": "VCR_OFF=true tap -t60 -j16 test/e2e/*.js",
 		"test-spelling": "cspell .",
 		"test": "npm run test-unit && npm run test-integration && npm run test-spelling",
-		"prepublishOnly": "npm run lint",
+		"prepublishOnly": "npm run lint && npm test",
 		"api": "node api.js"
 	},
 	"tap": {
