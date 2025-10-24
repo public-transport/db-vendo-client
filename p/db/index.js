@@ -4,6 +4,7 @@ import {products} from '../../lib/products.js';
 // journeys()
 import {formatJourneysReq} from '../dbnav/journeys-req.js';
 const {journeysEndpoint} = base;
+const {bestpriceEndpoint} = base;
 
 // refreshJourneys()
 import {formatRefreshJourneyReq} from '../dbnav/journeys-req.js';
@@ -39,6 +40,7 @@ const profile = {
 
 	formatJourneysReq,
 	journeysEndpoint,
+	bestpriceEndpoint,
 
 	formatRefreshJourneyReq,
 	refreshJourneysEndpointTickets, refreshJourneysEndpointPolyline,
