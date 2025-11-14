@@ -7,7 +7,7 @@ const parseLine = (ctx, p) => {
 		type: 'line',
 		id: slugg(p.verkehrsmittel?.langText || p.verkehrmittel?.langText || p.transport?.journeyDescription || p.risZuglaufId || p.train && p.train.category + ' ' + p.train.lineName + ' ' + p.train.no || p.no && p.name + ' ' + p.no || p.langtext || p.mitteltext || p.zugName || p.lineName), // TODO terrible
 		fahrtNr: String(fahrtNr),
-		name: p.verkehrsmittel?.name || p.verkehrsmittel?.langText || p.transport?.journeyDescription || p.verkehrmittel?.name || p.verkehrmittel?.langText || p.zugName || p.transport && p.transport.category + ' ' + p.transport.line || p.train && p.train.category + ' ' + p.train.lineName || p.name || p.mitteltext || p.langtext || p.lineName,
+		name: p.verkehrsmittel?.name || p.verkehrsmittel?.langText || p.verkehrmittel?.name || p.verkehrmittel?.langText || p.zugName || p.transport && p.transport.category + ' ' + (p.transport.line || p.transport.number) || p.train && p.train.category + ' ' + p.train.lineName || p.name || p.mitteltext || p.langtext || p.lineName,
 		public: true,
 	};
 
