@@ -111,7 +111,7 @@ const createClient = (profile, userAgent, opt = {}) => {
 		const {res} = await profile.request({profile, opt}, userAgent, req);
 
 		const ctx = {profile, opt, common, res};
-		let results = (res[resultsField] || res.items || res.bahnhofstafelAbfahrtPositionen || res.bahnhofstafelAnkunftPositionen || res.entries.flat())
+		let results = (res[resultsField] || res.items || res.bahnhofstafelAbfahrtPositionen || res.bahnhofstafelAnkunftPositionen || res.entries?.flat() || [])
 			.map(res => parse(ctx, res)); // TODO sort?, slice
 
 		if (!opt.includeRelatedStations) {
