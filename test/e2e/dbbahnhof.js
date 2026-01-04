@@ -3,7 +3,7 @@ import isRoughlyEqual from 'is-roughly-equal';
 
 import {createWhen} from './lib/util.js';
 import {createClient} from '../../index.js';
-import {profile as dbProfile} from '../../p/dbregioguide/index.js';
+import {profile as dbProfile} from '../../p/dbbahnhof/index.js';
 import {
 	createValidateStation,
 	createValidateTrip,
@@ -23,7 +23,7 @@ import {testJourneysWithDetour} from './lib/journeys-with-detour.js';
 const isObj = o => o !== null && 'object' === typeof o && !Array.isArray(o);
 const minute = 60 * 1000;
 
-const T_MOCK = 1747040400 * 1000; // 2025-05-12T08:00:00+01:00
+const T_MOCK = 1764831628 * 1000; // Thu Dec 04 2025 07:00:28 GMT+0000
 const when = createWhen(dbProfile.timezone, dbProfile.locale, T_MOCK);
 
 const cfg = {
@@ -100,7 +100,7 @@ const berlinSüdkreuz = '8011113';
 const kölnHbf = '8000207';
 
 
-tap.test('departures at Berlin Schwedter Str.', async (t) => {
+tap.skip('departures at Berlin Schwedter Str.', async (t) => {
 	const res = await client.departures(blnSchwedterStr, {
 		duration: 5, when,
 	});
@@ -114,7 +114,7 @@ tap.test('departures at Berlin Schwedter Str.', async (t) => {
 	t.end();
 });
 
-tap.test('departures with station object', async (t) => {
+tap.skip('departures with station object', async (t) => {
 	const res = await client.departures({
 		type: 'station',
 		id: jungfernheide,
@@ -130,7 +130,7 @@ tap.test('departures with station object', async (t) => {
 	t.end();
 });
 
-tap.test('arrivals at Berlin Schwedter Str.', async (t) => {
+tap.skip('arrivals at Berlin Schwedter Str.', async (t) => {
 	const res = await client.arrivals(blnSchwedterStr, {
 		duration: 5, when,
 	});

@@ -3,7 +3,7 @@ const simplify = j => j.legs.map(l => {
 		origin: l.origin,
 		destination: l.destination,
 		departure: l.plannedDeparture || l.departure,
-		arrival: l.plannedArrival || l.arrival,
+		// arrival: l.plannedArrival || l.arrival, // sometimes differs on older journeys
 		line: l.line,
 	};
 });

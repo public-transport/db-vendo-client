@@ -52,6 +52,7 @@ const berlinWienQuery0 = Object.freeze(
 				verkehrsmittel: [
 					'ALL',
 				],
+				alternativeHalteBerechnung: true,
 				zeitWunsch: {
 					reiseDatum: '2024-12-07T23:50:12+01:00',
 					zeitPunktArt: 'ABFAHRT',

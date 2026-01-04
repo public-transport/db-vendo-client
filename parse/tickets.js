@@ -60,6 +60,7 @@ const parseTickets = (ctx, j) => {
 	if (!ang && j.angebote?.angebotsCluster) {
 		ang = j.angebote.angebotsCluster.flatMap(c => c.angebotsSubCluster
 			.flatMap(c => c.angebotsPositionen
+<<<<<<< HEAD
 				.flatMap(p => {
 					// Extract all possible ticket types from DB Navigator format
 					const positions = [];
@@ -87,6 +88,18 @@ const parseTickets = (ctx, j) => {
 
 					return positions;
 				}),
+=======
+				.flatMap(p => [
+					p.einfacheFahrt?.standard?.reisePosition,
+					p.einfacheFahrt?.upsellEntgelt?.einfacheFahrt?.reisePosition,
+					p.einfacheFahrt?.upsellAngebote?.map(a => a.upsellEntgelt?.einfacheFahrt?.reisePosition),
+				].flatMap(p => p)
+					.filter(p => p)
+					.map(p => {
+						p.reisePosition.teilpreis = Boolean(p.teilpreisInformationen?.length);
+						return p.reisePosition;
+					})),
+>>>>>>> upstream/main
 			),
 		);
 	}
@@ -101,7 +114,7 @@ const parseTickets = (ctx, j) => {
 						amount: Math.round(s.preis?.betrag * 100),
 						currency: s.preis?.waehrung,
 					},
-					firstClass: s.klasse == 'KLASSE_1' || s.premium || Boolean(s.nutzungsInformationen?.find(i => i.klasse == 'KLASSE_1')),
+					firstClass: s.klasse == 'KLASSE_1' || Boolean(s.nutzungsInformationen?.find(i => i.klasse == 'KLASSE_1')),
 					partialFare: s.teilpreis,
 				};
 				if (s.teilpreis) {

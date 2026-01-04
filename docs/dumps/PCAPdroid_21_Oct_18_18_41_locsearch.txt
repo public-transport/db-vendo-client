@@ -1,0 +1,17 @@
+POST /mob/location/search HTTP/1.1
+Accept: application/x.db.vendo.mob.location.v3+json
+X-Correlation-ID: 599238b3-d1e0-43a0-9534-ebc0dbf30b72_339465f1-2b99-4c6e-b739-c8ad0efed49a
+X-Device-Os-Name: Android
+X-Device-Os-Version: 32
+X-Device-Model: Google Pixel 3a
+X-App-Version: 25.18.2
+User-Agent: DBNavigator/Android/25.18.2
+Accept-Language: en,de
+X-INSTANA-ANDROID: a0f760ec-0443-4209-b564-e714ea548a16
+Content-Type: application/x.db.vendo.mob.location.v3+json
+Content-Length: 45
+Host: app.services-bahn.de
+Connection: Keep-Alive
+Accept-Encoding: gzip
+
+{"locationTypes":["ALL"],"searchTerm":"test"}

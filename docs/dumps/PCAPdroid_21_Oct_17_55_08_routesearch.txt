@@ -1,0 +1,17 @@
+POST /mob/angebote/fahrplan HTTP/1.1
+Accept: application/x.db.vendo.mob.verbindungssuche.v9+json
+X-Correlation-ID: 599238b3-d1e0-43a0-9534-ebc0dbf30b72_339465f1-2b99-4c6e-b739-c8ad0efed49a
+X-Device-Os-Name: Android
+X-Device-Os-Version: 32
+X-Device-Model: Google Pixel 3a
+X-App-Version: 25.18.2
+User-Agent: DBNavigator/Android/25.18.2
+Accept-Language: en,de
+X-INSTANA-ANDROID: 48cce61a-1b80-4dc4-8818-50bbb38ef54d
+Content-Type: application/x.db.vendo.mob.verbindungssuche.v9+json
+Content-Length: 822
+Host: app.services-bahn.de
+Connection: Keep-Alive
+Accept-Encoding: gzip
+
+{"autonomeReservierung":false,"einstiegsTypList":["STANDARD"],"fahrverguenstigungen":{"deutschlandTicketVorhanden":true,"nurDeutschlandTicketVerbindungen":false},"klasse":"KLASSE_2","reiseHin":{"wunsch":{"abgangsLocationId":"A\u003d1@O\u003dFrankfurt(Main)Hbf@X\u003d8662833@Y\u003d50106682@U\u003d80@L\u003d8000105@B\u003d1@p\u003d1760568530@i\u003dU×008011068@","alternativeHalteBerechnung":true,"verkehrsmittel":["ALL"],"zeitWunsch":{"reiseDatum":"2025-10-21T17:47:34.688151+02:00","zeitPunktArt":"ABFAHRT"},"zielLocationId":"A\u003d1@O\u003dBerlin Hbf@X\u003d13369549@Y\u003d52525589@U\u003d80@L\u003d8011160@B\u003d1@p\u003d1760568530@i\u003dU×008065969@"}},"reisendenProfil":{"reisende":[{"ermaessigungen":["KEINE_ERMAESSIGUNG KLASSENLOS"],"reisendenTyp":"ERWACHSENER"}]},"reservierungsKontingenteVorhanden":false}

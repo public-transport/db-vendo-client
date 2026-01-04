@@ -23,7 +23,7 @@ import {testJourneysWithDetour} from './lib/journeys-with-detour.js';
 const isObj = o => o !== null && 'object' === typeof o && !Array.isArray(o);
 const minute = 60 * 1000;
 
-const T_MOCK = 1747040400 * 1000; // 2025-05-12T08:00:00+01:00
+const T_MOCK = 1764831628 * 1000; // Thu Dec 04 2025 07:00:28 GMT+0000
 const when = createWhen(dbProfile.timezone, dbProfile.locale, T_MOCK);
 
 const cfg = {

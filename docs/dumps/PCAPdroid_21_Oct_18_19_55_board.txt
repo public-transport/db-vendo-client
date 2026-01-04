@@ -1,0 +1,17 @@
+POST /mob/bahnhofstafel/abfahrt HTTP/1.1
+Accept: application/x.db.vendo.mob.bahnhofstafeln.v2+json
+X-Correlation-ID: 9c9405f1-4792-4ec0-ba1f-ca231a15ac36_339465f1-2b99-4c6e-b739-c8ad0efed49a
+X-Device-Os-Name: Android
+X-Device-Os-Version: 32
+X-Device-Model: Google Pixel 3a
+X-App-Version: 25.18.2
+User-Agent: DBNavigator/Android/25.18.2
+Accept-Language: en,de
+X-INSTANA-ANDROID: a8b79643-ab22-472d-ab6e-40d5b888b078
+Content-Type: application/x.db.vendo.mob.bahnhofstafeln.v2+json
+Content-Length: 401
+Host: app.services-bahn.de
+Connection: Keep-Alive
+Accept-Encoding: gzip
+
+{"anfragezeit":"17:47","datum":"2025-10-21","ursprungsBahnhofId":"A\u003d1@O\u003dTessin@X\u003d12462618@Y\u003d54032020@U\u003d81@L\u003d8013106@B\u003d1@p\u003d1760557009@i\u003dU×008027109@","verkehrsmittel":["HOCHGESCHWINDIGKEITSZUEGE","INTERCITYUNDEUROCITYZUEGE","INTERREGIOUNDSCHNELLZUEGE","NAHVERKEHRSONSTIGEZUEGE","SBAHNEN","BUSSE","SCHIFFE","UBAHN","STRASSENBAHN","ANRUFPFLICHTIGEVERKEHRE"]}

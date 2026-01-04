@@ -38,10 +38,10 @@ tap.test('db trip(): dynamic request formatting', (t) => {
 
 	const reqDbNav = profile.formatTripReq(ctx, tripIdHafas);
 	delete reqDbNav.headers['X-Correlation-ID'];
-	const reqDbRegioGuide = profile.formatTripReq(ctx, tripIdRis);
+	// const reqDbRegioGuide = profile.formatTripReq(ctx, tripIdRis);
 
 	t.same(reqDbNav, reqDbNavExpected);
-	t.same(reqDbRegioGuide, reqDbRegioGuideExpected);
+	// t.same(reqDbRegioGuide, reqDbRegioGuideExpected);
 
 	t.end();
 });

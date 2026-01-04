@@ -48,7 +48,7 @@ Notes:
 * routing-search returns polylines (!)
 
 ## Vendo/Movas Navigator API
-https://app.vendo.noncd.db.de/mob/
+https://app.vendo.noncd.db.de/mob/ and/or https://app.services-bahn.de/
 
 EPs:
 * bahnhofstafel/abfahrt
