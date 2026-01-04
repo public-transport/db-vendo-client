@@ -635,9 +635,18 @@
     "Deutschlandticket",
     "fahrverguenstigungen",
     "cancelation",
+<<<<<<< HEAD
+    "Verbund",
+    "Verbundticket",
+    "Verbundtickets",
+    "verbundticket",
+    "Vergangenheit",
+    "reisewunsch"
+=======
     "MOTIS",
     "motis",
     "Berechnung"
+>>>>>>> upstream/main
   ],
   "ignorePaths": [
     "docs/dumps/**",

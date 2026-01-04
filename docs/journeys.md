@@ -82,6 +82,7 @@ With `opt`, you can override the default options, which look like this:
 	loyaltyCard: null, // BahnCards etc., see below
 	language: 'en', // language to get results in
 	bmisNumber: null, // 7-digit BMIS number for business customer rates
+	autoFetchVerbundtickets: false, // automatically fetch Verbundticket prices via recon API (see below)
 }
 ```
 
@@ -341,3 +342,31 @@ When a BMIS number is provided, the request will include a `firmenZugehoerigkeit
 ## The `routingMode` option
 
 The `routingMode` option is not supported by db-vendo-client. The behavior will be the same as the [`HYBRID` mode of hafas-client](https://github.com/public-transport/hafas-client/blob/main/p/db/readme.md#using-the-routingmode-option), i.e. cancelled trains/infeasible journeys will also be contained for informational purpose.
+
+## Verbundtickets
+
+Verbundtickets (local transport network tickets) require a two-step API process to fetch prices. By default, journeys with Verbundtickets will not include ticket prices. To automatically fetch these prices, use the `autoFetchVerbundtickets` option:
+
+```js
+const journeys = await client.journeys(from, to, {
+	tickets: true,
+	autoFetchVerbundtickets: true // enable automatic Verbundticket price fetching
+})
+```
+
+**Note:** This option will make an additional API request for each journey that contains Verbundtickets, which may impact performance. Use it only when you need ticket prices for local transport networks.
+
+### Manual Verbundticket price fetching
+
+If you prefer to fetch Verbundticket prices manually (or if automatic detection doesn't work), you can use the `refreshJourney` method:
+
+```js
+const journeys = await client.journeys(from, to, { tickets: true })
+const journey = journeys.journeys[0]
+
+// Check if journey has empty ticket prices but a refresh token
+if (!journey.price && journey.refreshToken) {
+	const refreshed = await client.refreshJourney(journey.refreshToken, { tickets: true })
+	// refreshed.journey will have the Verbundticket prices
+}
+```

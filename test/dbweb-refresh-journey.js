@@ -26,9 +26,9 @@ const opt = {
 	products: {},
 };
 
-tap.test('parses a refresh journey correctly (dbweb)', (t) => {
+tap.test('parses a refresh journey correctly (dbweb)', async (t) => {
 	const ctx = {profile, opt, common: null, res};
-	const journey = profile.parseJourney(ctx, res.verbindungen[0]);
+	const journey = await profile.parseJourney(ctx, res.verbindungen[0]);
 
 	t.same(journey, expected.journey);
 	t.end();

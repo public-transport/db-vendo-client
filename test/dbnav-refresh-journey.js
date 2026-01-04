@@ -26,9 +26,9 @@ const opt = {
 	products: {},
 };
 
-tap.test('parses a refresh journey correctly (DB)', (t) => {
-	const ctx = {profile, opt, common: null, res};
-	const journey = profile.parseJourney(ctx, res);
+tap.test('parses a refresh journey correctly (DB)', async (t) => {
+	const ctx = {profile, opt, common: null, res, userAgent: 'test'};
+	const journey = await profile.parseJourney(ctx, res);
 
 	t.same(journey, expected.journey);
 	t.end();

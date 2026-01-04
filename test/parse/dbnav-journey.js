@@ -469,8 +469,8 @@ const input = {
 	],
 }
 
-tap.test('dbnav profile fixes time zone bug', (t) => { // see https://github.com/public-transport/db-vendo-client/issues/24
-	const parsedJourney = parseJourneyDbnav(ctx, structuredClone(input));
+tap.test('dbnav profile fixes time zone bug', async (t) => { // see https://github.com/public-transport/db-vendo-client/issues/24
+	const parsedJourney = await parseJourneyDbnav(ctx, structuredClone(input));
 	const expectedDeparture = '2025-03-06T14:52:00+01:00';
 	t.equal(parsedJourney.legs[0].departure, expectedDeparture)
 
@@ -484,14 +484,14 @@ tap.test('dbnav profile fixes time zone bug', (t) => { // see https://github.com
 	t.end();
 })
 
-tap.test('dbnav profile parses journey without time zone bug like other profiles', (t) => {
+tap.test('dbnav profile parses journey without time zone bug like other profiles', async (t) => {
 	const _input = structuredClone(input);
 	// fix bug by hand
 	_input.verbindungsAbschnitte[0].ezAbgangsDatum = '2025-03-06T14:52:00+01:00';
 	_input.verbindungsAbschnitte[0].ezAnkunftsDatum = '2025-03-06T14:54:00+01:00';
-	const expected = parseJourneyDefault(ctx, _input)
+	const expected = await parseJourneyDefault(ctx, _input)
 
-	t.same(parseJourneyDbnav(ctx, _input), expected);
+	t.same(await parseJourneyDbnav(ctx, _input), expected);
 
 	t.end();
 })
