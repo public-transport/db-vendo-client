@@ -60,28 +60,28 @@ const parseRemarks = (ctx, ref) => {
 };
 
 /*
-	meldungenAsObject
+    meldungenAsObject
     {
         "code": "MDA-AK-MSG-1000",
         "nachrichtKurz": "Connection is in the past.",
         "nachrichtLang": "Selected connection is in the past.",
         "fahrtRichtungKennzeichen": "HINFAHRT"
     }
-	[
+    [
     {
         "code": "MDA-AK-MSG-3000",
         "nachrichtKurz": "Booking not possible.",
         "nachrichtLang": "Booking is no longer possible for the connection you selected",
         "fahrtRichtungKennzeichen": "HINFAHRT"
     }
-	]
+    ]
 
-	priorisierteMeldungen
+    priorisierteMeldungen
     {
         "prioritaet": "HOCH",
         "text": "ICE 597 departs differently from Mainz Hbf from Platform 1b"
     }
-	[
+    [
     {
         "prioritaet": "NIEDRIG",
         "text": "Advance notice! In the period from 15.12.24 to 17.01.25, construction work will take place between Mainz Hbf and Frankfurt(Main)Hbf. There will be changed run times and partial cancellation. Please inform yourself early on the Internet and at the stations."
@@ -90,14 +90,14 @@ const parseRemarks = (ctx, ref) => {
         "prioritaet": "HOCH",
         "text": "The route between Mainz Hbf and Mainz Nord is currently closed. The reason is a repair on the track. At the moment, no train journeys are possible in the affected section of the route. As a result, there are now delays and partial failures. The trains terminates and starts unscheduled in Mainz Hbf. Please check your travel connections shortly before the train departs. This message will be updated as soon as we have more information."
     }
-	]
-	[
+    ]
+    [
     {
         "prioritaet": "HOCH",
         "text": "Trip is not possible"
     }
-	]
-	[
+    ]
+    [
     {
         "prioritaet": "HOCH",
         "text": "Intervention by authorities"
@@ -106,44 +106,44 @@ const parseRemarks = (ctx, ref) => {
         "prioritaet": "HOCH",
         "text": "Switch repairs between Frankfurt(Main)Hbf and Mannheim Hbf delays rail transport. The train is diverted. The stop Mainz Hbf is cancelled. Please allow for a delay of up to 10 minutes. Please check for any changes to your journey prior to departure."
     }
-	]
-	[
+    ]
+    [
     {
         "prioritaet": "HOCH",
         "text": "Stop cancelled",
         "type": "HALT_AUSFALL"
     }
-	]
+    ]
 
-	risNotizen
-	{
-	"key": "text.realtime.connection.platform.change",
-	"value": "ICE 597 departs differently from Mainz Hbf from Platform 1b"
-	}
-	{key: "FT", value: "Staff delayed due to earlier journey", routeIdxFrom: 0, routeIdxTo: 12}
-	[
+    risNotizen
+    {
+    "key": "text.realtime.connection.platform.change",
+    "value": "ICE 597 departs differently from Mainz Hbf from Platform 1b"
+    }
+    {key: "FT", value: "Staff delayed due to earlier journey", routeIdxFrom: 0, routeIdxTo: 12}
+    [
     {
         "key": "text.realtime.connection.cancelled",
         "value": "Trip is not possible"
     }
-	]
-	[
+    ]
+    [
     {
         "key": "FT",
         "value": "Intervention by authorities",
         "routeIdxFrom": 9,
         "routeIdxTo": 21
     }
-	]
-	[
+    ]
+    [
     {
         "key": "text.realtime.stop.cancelled",
         "value": "Stop cancelled"
     }
-	]
+    ]
 
-	himMeldungen
-	[
+    himMeldungen
+    [
     {
         "ueberschrift": "Construction work.",
         "text": "Advance notice! In the period from 15.12.24 to 17.01.25, construction work will take place between Mainz Hbf and Frankfurt(Main)Hbf. There will be changed run times and partial cancellation. Please inform yourself early on the Internet and at the stations.",
@@ -156,14 +156,14 @@ const parseRemarks = (ctx, ref) => {
         "prioritaet": "HOCH",
         "modDateTime": "2024-12-06T06:24:35"
     }
-	[
+    [
     {
         "ueberschrift": "Disruption.",
         "text": "Switch repairs between Frankfurt(Main)Hbf and Mannheim Hbf delays rail transport. The train is diverted. The stop Mainz Hbf is cancelled. Please allow for a delay of up to 10 minutes. Please check for any changes to your journey prior to departure.",
         "prioritaet": "HOCH",
         "modDateTime": "2024-12-05T19:01:48"
     }
-	]
+    ]
 
     zugattribute
     [
@@ -213,7 +213,7 @@ const parseCancelled = (ref) => {
 			(ref.risNotizen || ref.echtzeitNotizen || ref.meldungen).find(r => r.key == 'text.realtime.stop.cancelled'
 				|| r.type == 'HALT_AUSFALL'
 				|| r.text == 'Halt entfällt'
-				|| r.text == 'Stop cancelled',
+				|| r.text?.includes('fällt aus') || r.text?.includes('cancelled'),
 			),
 		);
 };
