@@ -637,7 +637,8 @@
     "cancelation",
     "MOTIS",
     "motis",
-    "Berechnung"
+    "Berechnung",
+    "fällt"
   ],
   "ignorePaths": [
     "docs/dumps/**",
