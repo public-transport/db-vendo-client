@@ -23,7 +23,7 @@ import {testJourneysWithDetour} from './lib/journeys-with-detour.js';
 const isObj = o => o !== null && 'object' === typeof o && !Array.isArray(o);
 const minute = 60 * 1000;
 
-const T_MOCK = 1747040400 * 1000; // 2025-05-12T08:00:00+01:00
+const T_MOCK = 1779714000 * 1000; // 2026-05-25T15:00:00+02:00
 const when = createWhen(dbProfile.timezone, dbProfile.locale, T_MOCK);
 
 const cfg = {
@@ -127,7 +127,7 @@ if (!process.env.VCR_OFF) {
 	});
 
 	tap.test('refreshJourney – valid tickets', async (t) => {
-		const T_MOCK = 1710831600 * 1000; // 2024-03-19T08:00:00+01:00
+		const T_MOCK = 1779714000 * 1000; // 2026-05-25T15:00:00+02:00
 		const when = createWhen(dbProfile.timezone, dbProfile.locale, T_MOCK);
 
 		const journeysRes = await client.journeys(berlinHbf, münchenHbf, {
@@ -261,7 +261,7 @@ if (!process.env.VCR_OFF) {
 	}
 
 	tap.test('refreshJourney', async (t) => {
-		const T_MOCK = 1710831600 * 1000; // 2024-03-19T08:00:00+01:00
+		const T_MOCK = 1779714000 * 1000; // 2026-05-25T15:00:00+02:00
 		const when = createWhen(dbProfile.timezone, dbProfile.locale, T_MOCK);
 		const validate = createValidate({...cfg, when});
 
