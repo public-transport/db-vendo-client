@@ -18,7 +18,7 @@ const formatJourneysReq = (ctx, from, to, when, outFrwd, journeysRef) => {
 		abfahrtsHalt: from.lid,
 		zwischenhalte: opt.via
 			? [{id: profile.formatLocation(profile, opt.via, 'opt.via').lid}]
-			: null,
+			: undefined,
 		ankunftsHalt: to.lid,
 		produktgattungen: filters,
 		bikeCarriage: opt.bike,
