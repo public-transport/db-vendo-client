@@ -1,12 +1,12 @@
 {
-	"journeysEndpoint": "https://app.vendo.noncd.db.de/mob/angebote/fahrplan",
-	"bestpriceEndpoint": "https://app.vendo.noncd.db.de/mob/angebote/tagesbestpreis",
-	"refreshJourneysEndpointTickets": "https://app.vendo.noncd.db.de/mob/angebote/recon",
-	"refreshJourneysEndpointPolyline": "https://app.vendo.noncd.db.de/mob/trip/recon",
-	"locationsEndpoint": "https://app.vendo.noncd.db.de/mob/location/search",
-	"stopEndpoint": "https://app.vendo.noncd.db.de/mob/location/details/",
-	"nearbyEndpoint": "https://app.vendo.noncd.db.de/mob/location/nearby",
-	"tripEndpoint": "https://app.vendo.noncd.db.de/mob/zuglauf/",
-	"boardEndpoint": "https://app.vendo.noncd.db.de/mob/bahnhofstafel/",
+	"journeysEndpoint": "https://app.services-bahn.de/mob/angebote/fahrplan",
+	"bestpriceEndpoint": "https://app.services-bahn.de/mob/angebote/tagesbestpreis",
+	"refreshJourneysEndpointTickets": "https://app.services-bahn.de/mob/angebote/recon",
+	"refreshJourneysEndpointPolyline": "https://app.services-bahn.de/mob/trip/recon",
+	"locationsEndpoint": "https://app.services-bahn.de/mob/location/search",
+	"stopEndpoint": "https://app.services-bahn.de/mob/location/details/",
+	"nearbyEndpoint": "https://app.services-bahn.de/mob/location/nearby",
+	"tripEndpoint": "https://app.services-bahn.de/mob/zuglauf/",
+	"boardEndpoint": "https://app.services-bahn.de/mob/bahnhofstafel/",
 	"defaultLanguage": "en"
 }
