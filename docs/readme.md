@@ -63,7 +63,7 @@ const client = createClient(retryingDbProfile, userAgent)
 
 ## User agent randomization
 
-By default, `db-vendo-client` does not randomize the client name that you pass into `createClient`, and sends it as [`User-Agent`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent) as it is. At least DB Navigator always sends the same user agent as well (cf. `dbnav` profile).  You can turn on randomization by setting `profile.randomizeUserAgent` to `false`:
+By default, `db-vendo-client` does not randomize the client name that you pass into `createClient`, and sends it as [`User-Agent`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent) as it is. At least DB Navigator always sends the same user agent as well (cf. `dbnav` profile). You can turn on randomization by setting `profile.randomizeUserAgent` to `true`:
 
 ```js
 const client = createClient({
