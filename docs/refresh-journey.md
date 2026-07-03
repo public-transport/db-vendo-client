@@ -37,3 +37,14 @@ const {
 `journey` is a *single* [*Friendly Public Transport Format* v2 draft](https://github.com/public-transport/friendly-public-transport-format/blob/3bd36faa721e85d9f5ca58fb0f38cdbedb87bbca/spec/readme.md) `journey`, in the same format as returned by [`journeys()`](journeys.md).
 
 `realtimeDataUpdatedAt` is currently not set in db-vendo-client, because the upstream APIs don't provide it.
+
+## Verbund tickets
+
+With the `db` or `dbnav` profile, pass `tickets: true` to retrieve fares offered by a local transport association (*Verbund*):
+
+```js
+const {journey} = await client.refreshJourney(refreshToken, {tickets: true})
+console.log(journey.tickets)
+```
+
+This uses DB Navigator's ticket refresh endpoint. `journeys()` does not fetch these fares automatically, because doing so would require an additional backend request for every journey.

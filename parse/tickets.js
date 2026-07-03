@@ -1,5 +1,36 @@
 const PARTIAL_FARE_HINT = 'Teilpreis / partial fare';
 
+const unwrapTravelPosition = (position) => {
+	let wrapper = position;
+	let partialFare = false;
+	while (wrapper?.reisePosition) {
+		partialFare ||= Boolean(wrapper.teilpreisInformationen?.length);
+		wrapper = wrapper.reisePosition;
+	}
+	if (!wrapper) {
+		return null;
+	}
+	return {...wrapper, teilpreis: partialFare || Boolean(wrapper.teilpreis)};
+};
+
+const parseOfferPosition = (position) => {
+	const candidates = [
+		position.einfacheFahrt?.standard?.reisePosition,
+		position.einfacheFahrt?.upsellEntgelt?.einfacheFahrt?.reisePosition,
+		...(position.einfacheFahrt?.upsellAngebote || [])
+			.map(a => a.upsellEntgelt?.einfacheFahrt?.reisePosition),
+		position.verbundAngebot?.reisePosition,
+		position.verbundAngebot?.standard?.reisePosition,
+	];
+	return candidates.map(unwrapTravelPosition)
+		.filter(Boolean);
+};
+
+const parseOfferClusters = (clusters) => (clusters || [])
+	.flatMap(cluster => cluster.angebotsSubCluster || [])
+	.flatMap(cluster => cluster.angebotsPositionen || [])
+	.flatMap(parseOfferPosition);
+
 const parsePrice = (ctx, raw) => {
 	const p = raw.angebotsPreis || raw.angebote?.preise?.gesamt?.ab || raw.abPreis;
 	if (p?.betrag) {
@@ -20,21 +51,7 @@ const parseTickets = (ctx, j) => {
 	}
 	let tickets = undefined;
 	let price = parsePrice(ctx, j);
-	let ang = j.reiseAngebote
-		|| j.angebote?.angebotsCluster?.flatMap(c => c.angebotsSubCluster
-			.flatMap(c => c.angebotsPositionen
-				.flatMap(p => [
-					p.einfacheFahrt?.standard?.reisePosition,
-					p.einfacheFahrt?.upsellEntgelt?.einfacheFahrt?.reisePosition,
-					p.einfacheFahrt?.upsellAngebote?.map(a => a.upsellEntgelt?.einfacheFahrt?.reisePosition),
-				].flatMap(p => p)
-					.filter(p => p)
-					.map(p => {
-						p.reisePosition.teilpreis = Boolean(p.teilpreisInformationen?.length);
-						return p.reisePosition;
-					})),
-			),
-		);
+	const ang = j.reiseAngebote || parseOfferClusters(j.angebote?.angebotsCluster);
 	if (ang && ang.length > 0) { // if refreshJourney()
 		tickets = ang
 			.filter(s => s.typ == 'REISEANGEBOT' && !s.angebotsbeziehungList?.flatMap(b => b.referenzen)
