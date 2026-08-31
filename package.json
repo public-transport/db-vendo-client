@@ -1,7 +1,7 @@
 {
 	"name": "db-vendo-client",
 	"description": "Client for bahn.de public transport APIs.",
-	"version": "6.11.1",
+	"version": "6.11.2",
 	"type": "module",
 	"main": "index.js",
 	"files": [
