@@ -43,8 +43,14 @@ const loadEnrichedStationData = async (profile) => {
 const applyEnrichedStationData = async (ctx, shouldLoadEnrichedStationData) => {
 	const {profile, common} = ctx;
 	if (shouldLoadEnrichedStationData && !common.locations) {
-		const locations = await loadEnrichedStationData(profile);
-		common.locations = locations;
+		common.locationsPromise ??= loadEnrichedStationData(profile)
+			.then((locations) => {
+				common.locations = locations;
+			})
+			.finally(() => {
+				delete common.locationsPromise;
+			});
+		await common.locationsPromise;
 	}
 };
 
